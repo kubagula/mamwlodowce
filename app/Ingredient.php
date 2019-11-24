@@ -20,4 +20,12 @@ class Ingredient extends Model
     {
         return $this->belongsToMany('App\Recipe');
     }
+
+    /**
+     * The months that belong to the ingredient.
+     */
+    public function months()
+    {
+        return $this->belongsToMany('App\Month');
+    }
 }

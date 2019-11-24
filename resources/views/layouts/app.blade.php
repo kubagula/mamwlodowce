@@ -15,7 +15,7 @@
             <nav class="nav">                              
                     <div class="nav-item"><img src="{{ asset('/images/lodowka.png')}}" alt="logo"></div>
                     <div class="nav-item"><a href="{{ route('home') }}">Przepisy</a></div>
-                    <div class="nav-item"><a href="{{ route('home') }}">Kalendarz sezonowy</a></div>
+                    <div class="nav-item"><a href="{{ route('calendar') }}">Kalendarz sezonowy</a></div>
                     <div class="nav-item"><a href="{{ route('home') }}">Przelicznik wagi</a></div>
                     <div class="nav-item"><a href="{{ route('home') }}">Konserwanty</a></div>
                     <div class="nav-item"><a href="{{ route('home') }}">Licznik kalorii</a></div>                

@@ -118,4 +118,22 @@ class RecipeAdminController extends Controller
 
         return redirect()->action('RecipeAdminController@index');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function ingredients($id)
+    {   
+        $ingredient = Ingredient::find($id);
+        $recipes = array();
+
+        foreach($ingredient->recipes as $recipe) {
+            $recipes[$recipe->title] = ['description' => $recipe->description, 'url' => $recipe->url];
+        }        
+        // dd($recipes);
+        return view('recipes-list', ['recipes' => $recipes, 'ingredient' => $ingredient->name]);        
+    }
 }

@@ -1,32 +1,30 @@
-var reqs_id = 0;
+let reqs_id = 0;
+let in_id = 0;
 
  function removeElement(ev) {
-    var button = ev.target;
-    var field = button.previousSibling;
-    var div = button.parentElement;
-    div.removeChild(button);
-    div.removeChild(field);
+    // console.log(ev);
+    let button = ev.target;
+    let div = button.parentElement;   
+    button.parentNode.parentNode.removeChild(div);
 }
 
 function add() {
-    reqs_id++; // increment reqs_id to get a unique ID for the new element
-
-    //create textbox
-    var input = document.createElement('input');
-    input.type = "text";
-    input.setAttribute("class", "w3-input w3-border");
-    input.setAttribute('id', 'reqs' + reqs_id);
-    input.setAttribute('value', reqs_id);
-    var reqs = document.getElementById("reqs");
+    let formIngredient = document.getElementById("formIngredient");
+    let innerIngredient = document.getElementById("innerIngredient");
+    cloneIngredient = innerIngredient.cloneNode(true);   
+    in_id++; // increment in_id to get a unique ID for the new element
+    cloneIngredient.setAttribute('id', 'inner' + in_id);  
+    
+    formIngredient.appendChild(cloneIngredient);    
+    
     //create remove button
     var remove = document.createElement('button');
-    remove.setAttribute('id', 'reqsr' + reqs_id);
+    remove.setAttribute('id', 'inner' + in_id);
     remove.onclick = function(e) {
       removeElement(e)
     };
     remove.setAttribute("type", "button");
-    remove.innerHTML = "Remove" + reqs_id;
-    //append elements
-    reqs.appendChild(input);
-    reqs.appendChild(remove);
+    remove.innerHTML = "Usuń";
+    
+    cloneIngredient.appendChild(remove);
 }

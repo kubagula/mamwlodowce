@@ -16,39 +16,29 @@
                     		<h5>Dodaj przepis</h5>
                     		<form method="POST" action="{{ action('RecipeAdminController@store') }}">                    		
     							@csrf 
-                                <div class="form-group">
+                                <div class="form-group">                                   
 
-                                    <!-- <div id="reqs">
-                                    <h3 align="center"> Requirements </h3>
-                                    </div> -->
-                                    <div id="reqs">
-                                        <label for="ingredient">Składnik</label>                                    
-                                        <select class="form-control" id="ingredient" name="ingredients[]">
-                                            @foreach ($ingredients as $ingredient)    
-                                                <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
-                                            @endforeach
-                                        </select>                                    
-                                        <label for="value">Ilość</label>
-                                        <input class="form-control" type="text" name="value[]" id="value" value=""><br>
-                                    </div>
-                                    <button type="button" value="Add" onclick="javascript:add();"> Add</button>
-
-
-                                    <label for="ingredient">Składnik</label>
-                                    <select class="form-control" id="ingredient" name="ingredients[]">
-                                        @foreach ($ingredients as $ingredient)    
-                                            <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="value">Ilość</label>
-                                    <input class="form-control" type="text" name="value[]" id="value" value=""><br>
+                                    <div id="innerIngredient">
+                                            <label for="ingredient">Składnik</label>
+                                            <select class="form-control" id="ingredient" name="ingredients[]">
+                                                @foreach ($ingredients as $ingredient)    
+                                                    <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="value">Ilość</label>
+                                            <input class="form-control" type="text" name="value[]" id="value" value=""><br>
+                                        </div>
+                                    
+                                    <button type="button" value="Dodaj" onclick="javascript:add();"> Dodaj składnik</button>                                   
+                                        
+                                    <div id="formIngredient"></div>
 
                                 </div>    
 
                                 <div class="form-group">
                                     <label for="title">Tytuł</label>
                                     <input class="form-control" type="text" name="title" id="title" value=""><br>
-                                </div>                               
+                                </div>                                               
 
                                 <div class="form-group">
                                     <label for="description">Opis</label>

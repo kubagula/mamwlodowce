@@ -3,23 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ingredient;
 use App\Month;
 use Session;
 
-class IngredientAdminController extends Controller
+class MonthAdminController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $ingredientsAll = Ingredient::all();
         $monthsAll = Month::all();        
 
-        return view('admin.ingredients', ['ingredients' => $ingredientsAll, 'months' => $monthsAll]);
+        return view('admin.months', ['months' => $monthsAll]);
     }
 
     /**
@@ -29,7 +27,7 @@ class IngredientAdminController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -39,20 +37,13 @@ class IngredientAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $ingredient = Ingredient::firstOrCreate(['name' => $request['name']]); 
-        $ingredientId = $ingredient->id;
+    {
+        $month = Month::firstOrCreate(['name' => $request['name']]); 
 
-        $months = $request['months'];        
-
-        foreach($months as $key => $month) {
-            Ingredient::find($ingredientId)->months()->attach($month);
-        }
-
-        $message = 'Dodano składnik';     	    	
+        $message = 'Dodano miesiąc';               
         Session::flash('message', $message);
 
-        return redirect()->action('IngredientAdminController@index');
+        return redirect()->action('MonthAdminController@index');
     }
 
     /**
@@ -63,7 +54,7 @@ class IngredientAdminController extends Controller
      */
     public function show($id)
     {
-        echo 'jestem 4';
+        //
     }
 
     /**
@@ -74,7 +65,7 @@ class IngredientAdminController extends Controller
      */
     public function edit($id)
     {
-        echo 'jestem3';
+        //
     }
 
     /**
@@ -87,7 +78,6 @@ class IngredientAdminController extends Controller
     public function update(Request $request, $id)
     {
         //
-        echo 'jestem2';
     }
 
     /**
@@ -98,11 +88,11 @@ class IngredientAdminController extends Controller
      */
     public function destroy($id)
     {
-        Ingredient::destroy($id);       
+        Month::destroy($id);       
         
-        $message = "Składnik usunięto";
+        $message = "Miesiąc usunięto";
         Session::flash('message', $message);
 
-        return redirect()->action('IngredientAdminController@index');
+        return redirect()->action('MonthAdminController@index');
     }
 }

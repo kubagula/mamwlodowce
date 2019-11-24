@@ -18,6 +18,9 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/kalendarz-sezonowy', 'CalendarController@index')->name('calendar');
+
+Route::get('/przepisy-ze-skladnikiem/{id}', 'RecipeAdminController@ingredients')->name('recipes.ingredients');
 
 Route::get('/admin', 'HomeController@admin')->middleware('admin');
 
@@ -26,3 +29,4 @@ Route::get('/admin', 'HomeController@admin')->middleware('admin');
 
 Route::resource('admin/ingredients', 'IngredientAdminController');
 Route::resource('admin/recipes', 'RecipeAdminController');
+Route::resource('admin/months', 'MonthAdminController');

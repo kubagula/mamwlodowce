@@ -29,4 +29,5 @@ Route::get('/admin', 'HomeController@admin')->middleware('admin');
 
 Route::resource('admin/ingredients', 'IngredientAdminController');
 Route::resource('admin/recipes', 'RecipeAdminController');
+Route::resource('admin/categories', 'CategoryAdminController');
 Route::resource('admin/months', 'MonthAdminController');

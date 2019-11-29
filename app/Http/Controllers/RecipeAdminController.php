@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Recipe;
 use App\Ingredient;
+use App\Category;
 use Session;
 
 class RecipeAdminController extends Controller
@@ -29,8 +30,9 @@ class RecipeAdminController extends Controller
     public function create()
     {
         $ingredientsAll = Ingredient::all();
+        $categoriesAll = Category::all();
 
-        return view('admin.recipes-create', ['ingredients' => $ingredientsAll]);
+        return view('admin.recipes-create', ['ingredients' => $ingredientsAll, 'categories' => $categoriesAll]);
     }
 
     /**
@@ -56,6 +58,19 @@ class RecipeAdminController extends Controller
 
         foreach($ingredients as $key => $ingredient) {
             Recipe::find($recipeId)->ingredients()->attach($ingredient, ['value' => $request['value'][$key]]);
+        }
+
+        // $categories = $request['categories'];
+        // $values = $request['value'];   
+
+        // foreach($categories as $key => $category) {
+        //     Recipe::find($recipeId)->categories()->attach($category, ['value' => $request['value'][$key]]);
+        // }
+
+        $categories = $request['categories'];        
+
+        foreach($categories as $key => $category) {
+            Recipe::find($recipeId)->categories()->attach($category);
         }
 
         $message = "Dodano przepis";
@@ -133,7 +148,7 @@ class RecipeAdminController extends Controller
         foreach($ingredient->recipes as $recipe) {
             $recipes[$recipe->title] = ['description' => $recipe->description, 'url' => $recipe->url];
         }        
-        // dd($recipes);
+        
         return view('recipes-list', ['recipes' => $recipes, 'ingredient' => $ingredient->name]);        
     }
 }

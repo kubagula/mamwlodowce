@@ -20,4 +20,12 @@ class Recipe extends Model
     {
         return $this->belongsToMany('App\Ingredient');
     }
+
+     /**
+     * The categories that belong to the recipe.
+     */
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category');
+    }
 }

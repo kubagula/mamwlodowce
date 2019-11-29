@@ -13,14 +13,14 @@
                 <div class="card-body">
                     @if(auth()->user()->is_admin == 1)
                     	<div class="">
-                    		<h5>Dodaj składnik</h5>
+                    		<h4>Dodaj składnik</h4>
                     		<form method="POST" action="{{ action('IngredientAdminController@store') }}" class="form-horizontal">                    		
     							@csrf
                                 <div class="form-group mx-sm-3 mb-2">                                    
                                     <label for="name" class="sr-only">Składnik</label>
                                     <input type="text" name="name" class="form-control">                                    
                                          
-                                    <legend style="font-size: 18px; margin-top: 10px;">Miesiące w których składnik jest tani</legend>  
+                                    <h5>Miesiące w których składnik jest tani</h5>  
                                     @foreach ($months as $month)
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{{ $month->id }}" name="months[]" id="defaultCheck">

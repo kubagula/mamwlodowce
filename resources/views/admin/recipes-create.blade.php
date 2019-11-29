@@ -13,7 +13,7 @@
                 <div class="card-body">
                     @if(auth()->user()->is_admin == 1)
                     	<div class="">
-                    		<h5>Dodaj przepis</h5>
+                    		<h4>Dodaj przepis</h4>
                     		<form method="POST" action="{{ action('RecipeAdminController@store') }}">                    		
     							@csrf 
                                 <div class="form-group">                                   
@@ -29,11 +29,23 @@
                                             <input class="form-control" type="text" name="value[]" id="value" value=""><br>
                                         </div>
                                     
-                                    <button type="button" value="Dodaj" onclick="javascript:add();"> Dodaj składnik</button>                                   
+                                    <button type="button" value="Dodaj" onclick="javascript:add();"> Dodaj składnik</button>
                                         
                                     <div id="formIngredient"></div>
 
                                 </div>    
+
+                                <div>
+                                    <h5>Kategorie do których należy przepis</h5>  
+                                    @foreach ($categories as $category)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" name="categories[]" id="defaultCheck">
+                                                <label class="form-check-label" for="defaultCheck">
+                                                    {{ $category->name }}
+                                                </label>
+                                            </div>  
+                                    @endforeach 
+                                </div>
 
                                 <div class="form-group">
                                     <label for="title">Tytuł</label>

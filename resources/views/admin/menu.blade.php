@@ -7,6 +7,9 @@
             <a class="nav-link" href="{{url('admin/recipes')}}">Przepisy</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{url('admin/categories')}}">Kategorie przepisów</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{url('admin/months')}}">Miesiące</a>
         </li>                          
     </ul>                                     

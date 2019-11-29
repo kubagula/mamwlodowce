@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Month;
-use App\Ingredient;
+use App\Category;
+use Session;
 
-class CalendarController extends Controller
+class CategoryAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +15,9 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        $monthsIngredients = array();
+        $categoriesAll = Category::all();        
 
-        $months = Month::all();
-        foreach($months as $month) {
-            foreach ($month->ingredients as $ingredient) {
-                $monthsIngredients[$month->name][] = ['id' => $ingredient->id, 'name' => $ingredient->name];    
-            }            
-        }
-                
-        return view('calendar', ['monthsIngredients' => $monthsIngredients]);
+        return view('admin.categories', ['categories' => $categoriesAll]);
     }
 
     /**
@@ -45,7 +38,12 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::firstOrCreate(['name' => $request['name']]); 
+
+        $message = 'Dodano Kategorię';               
+        Session::flash('message', $message);
+
+        return redirect()->action('CategoryAdminController@index');
     }
 
     /**
@@ -90,6 +88,11 @@ class CalendarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destroy($id);       
+        
+        $message = "Kategorię usunięto";
+        Session::flash('message', $message);
+
+        return redirect()->action('CategoryAdminController@index');
     }
 }

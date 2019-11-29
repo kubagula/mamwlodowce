@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIngredientMonthTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateIngredientMonthTable extends Migration
      */
     public function up()
     {
-        Schema::create('ingredient_month', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('ingredient_id');
-            $table->bigInteger('month_id');             
+        Schema::create('types', function (Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
+            $table->string('name', 100);
         });
     }
 
@@ -27,6 +26,6 @@ class CreateIngredientMonthTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingredient_month');
+        Schema::dropIfExists('types');
     }
 }

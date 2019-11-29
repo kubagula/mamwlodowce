@@ -19,7 +19,14 @@
                                 <div class="form-group mx-sm-3 mb-2">                                    
                                     <label for="name" class="sr-only">Składnik</label>
                                     <input type="text" name="name" class="form-control">                                    
-                                         
+                                    <h5>Typ składnika</h5>                                      
+                                    <label for="ingredient">Typ</label>
+                                            <select class="form-control" id="type_id" name="type_id">
+                                                @foreach ($types as $type)    
+                                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                     <h5>Miesiące w których składnik jest tani</h5>  
                                     @foreach ($months as $month)
                                         <div class="form-check">

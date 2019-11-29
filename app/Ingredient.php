@@ -11,7 +11,7 @@ class Ingredient extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'type_id'];
 
     /**
      * The receipes that belong to the ingredient.
@@ -27,5 +27,13 @@ class Ingredient extends Model
     public function months()
     {
         return $this->belongsToMany('App\Month');
+    }
+
+    /**
+     * Get the type that owns the ingredient.
+     */
+    public function type()
+    {
+        return $this->belongsTo('App\Type');
     }
 }

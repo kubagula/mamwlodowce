@@ -25,8 +25,16 @@
                                                     <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
                                                 @endforeach
                                             </select>
+                                            
                                             <label for="value">Ilość</label>
                                             <input class="form-control" type="text" name="value[]" id="value" value=""><br>
+
+                                            <label for="value">Miara</label>
+                                            <select class="form-control" id="unit" name="unit[]">
+                                                @foreach ($units as $unit)    
+                                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     
                                     <button type="button" value="Dodaj" onclick="javascript:add();"> Dodaj składnik</button>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Recipe;
 use App\Ingredient;
 use App\Category;
+use App\Unit;
 use Session;
 
 class RecipeAdminController extends Controller
@@ -31,8 +32,9 @@ class RecipeAdminController extends Controller
     {
         $ingredientsAll = Ingredient::all();
         $categoriesAll = Category::all();
+        $unitsAll = Unit::all();
 
-        return view('admin.recipes-create', ['ingredients' => $ingredientsAll, 'categories' => $categoriesAll]);
+        return view('admin.recipes-create', ['ingredients' => $ingredientsAll, 'categories' => $categoriesAll, 'units' => $unitsAll]);
     }
 
     /**
@@ -42,8 +44,7 @@ class RecipeAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // dd($request);
+    {        
         $recipe = new Recipe;
 
         $recipe->title = $request->title;
@@ -57,15 +58,8 @@ class RecipeAdminController extends Controller
         $values = $request['value'];   
 
         foreach($ingredients as $key => $ingredient) {
-            Recipe::find($recipeId)->ingredients()->attach($ingredient, ['value' => $request['value'][$key]]);
-        }
-
-        // $categories = $request['categories'];
-        // $values = $request['value'];   
-
-        // foreach($categories as $key => $category) {
-        //     Recipe::find($recipeId)->categories()->attach($category, ['value' => $request['value'][$key]]);
-        // }
+            Recipe::find($recipeId)->ingredients()->attach($ingredient, ['value' => $request['value'][$key], 'unit_id' => $request['unit'][$key]]);
+        }       
 
         $categories = $request['categories'];        
 

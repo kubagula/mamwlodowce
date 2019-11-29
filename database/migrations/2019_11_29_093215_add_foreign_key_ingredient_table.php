@@ -14,7 +14,7 @@ class AddForeignKeyIngredientTable extends Migration
     public function up()
     {
         Schema::table('ingredients', function (Blueprint $table) {
-            $table->integer('type_id')->unsigned();
+            $table->bigInteger('type_id')->unsigned();
 
             $table->foreign('type_id')
                 ->references('id')

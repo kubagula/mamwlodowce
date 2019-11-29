@@ -31,4 +31,5 @@ Route::resource('admin/ingredients', 'IngredientAdminController');
 Route::resource('admin/recipes', 'RecipeAdminController');
 Route::resource('admin/categories', 'CategoryAdminController');
 Route::resource('admin/types', 'TypeAdminController');
+Route::resource('admin/units', 'UnitAdminController');
 Route::resource('admin/months', 'MonthAdminController');

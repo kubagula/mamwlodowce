@@ -63,8 +63,8 @@ p {
 }
 
 .container {
-	color: #fff;
-	background-color: orange;
+	color: #000;
+	background-color: #c49b63;
 	width: 80%;
 	
 }
@@ -74,11 +74,11 @@ ul {
 }
 
 li {
-	color: #fff;
+	color: #000;
 }
 
 a {
-	color: #c49b63;
+	color: #0000;
 	text-decoration: none;
 }
 

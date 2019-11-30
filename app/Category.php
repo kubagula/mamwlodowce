@@ -13,7 +13,7 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'photo'];
 
     /**
      * The recipes that belong to the category.

@@ -35,7 +35,7 @@
                                                     <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                    </div>
                                     
                                     <button type="button" value="Dodaj" onclick="javascript:add();"> Dodaj składnik</button>
                                         

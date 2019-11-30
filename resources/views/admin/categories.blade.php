@@ -14,11 +14,17 @@
                     @if(auth()->user()->is_admin == 1)
                     	<div class="">
                     		<h5>Dodaj kategorię</h5>
-                    		<form method="POST" action="{{ action('CategoryAdminController@store') }}" class="form-inline">                    		
+                    		<form method="POST" action="{{ route('image.upload.category') }}" enctype="multipart/form-data" class="form-inline">                    		
     							@csrf
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label for="name" class="sr-only">Kategoria</label>
                                     <input type="text" name="name" class="form-control">
+
+                                    <br><br>
+                                    <label for="photo">Zdjęcie kategorii</label>
+                                    <input type="file" class="form-control-file" id="photo" name="photo">
+                                    <br><br>
+
                                     <input type="submit" value="Dodaj kategorię" class="btn btn-dark">
                                 </div>    							
 							</form>                 

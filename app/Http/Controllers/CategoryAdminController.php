@@ -37,8 +37,16 @@ class CategoryAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $category = Category::firstOrCreate(['name' => $request['name']]); 
+    {                
+        if($request->hasFile('photo')){                        
+                $file = $request->photo;                
+                $destination = 'images/categories/';
+                // $ext = $file->getClientOriginalExtension();
+                $name = $file->getClientOriginalName();                                
+                $file->move($destination, $name);                            
+        }
+
+        $category = Category::firstOrCreate(['name' => $request['name'], 'photo' => $name]); 
 
         $message = 'Dodano Kategorię';               
         Session::flash('message', $message);

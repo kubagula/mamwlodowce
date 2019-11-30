@@ -41,8 +41,10 @@ class IngredientAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {           
-        $ingredient = Ingredient::firstOrCreate(['name' => $request['name'], 'type_id' => $request['type_id']]); 
+    {    
+        $request['onhome'] == (int)1? (int)$onhome = 1: (int)$onhome = 0;
+
+        $ingredient = Ingredient::firstOrCreate(['name' => $request['name'], 'type_id' => $request['type_id'], 'onhome' => $onhome]); 
         $ingredientId = $ingredient->id;
 
         $months = $request['months'];        

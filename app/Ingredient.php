@@ -11,7 +11,7 @@ class Ingredient extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'type_id'];
+    protected $fillable = ['name', 'type_id', 'onhome'];
 
     /**
      * The receipes that belong to the ingredient.

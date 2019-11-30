@@ -18,7 +18,10 @@
     							@csrf
                                 <div class="form-group mx-sm-3 mb-2">                                    
                                     <label for="name" class="sr-only">Składnik</label>
-                                    <input type="text" name="name" class="form-control">                                    
+                                    <input type="text" name="name" class="form-control">    
+                                    <h5>Czy składnik ma się wyświetlać na stronie głównej?</h5>                                
+                                    <input type="checkbox" name="onhome" value="1">Tak/Nie<br>
+
                                     <h5>Typ składnika</h5>                                      
                                     <label for="ingredient">Typ</label>
                                             <select class="form-control" id="type_id" name="type_id">

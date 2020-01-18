@@ -19,19 +19,36 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/kalendarz-sezonowy', 'CalendarController@index')->name('calendar');
+Route::get('/przepisy', 'RecipeController@index')->name('recipes');
 
-Route::get('/przepisy-ze-skladnikiem/{id}', 'RecipeAdminController@ingredients')->name('recipes.ingredients');
+Route::get('/ajax', 'RecipeController@ajax')->name('ajax');
 
-Route::get('/admin', 'HomeController@admin')->middleware('admin');
+Route::get('/przepisy-ze-skladnikiem/{id}', 'RecipeController@recipesWithIngredient')->name('recipes.ingredients');
+Route::get('/przepisy-w-kategorii/{id}', 'RecipeController@recipeInCategories')->name('recipes.categories');
+Route::get('/wybrane-przepisy', 'RecipeController@selectedRecipes')->name('recipes.selectedRecipes');
+Route::get('/przepis/{id}', 'RecipeController@recipe')->name('recipes.recipe');
+
+// Route::get('/admin', 'AdminController@index')->middleware('auth');
 
 // Route::get('/admin/ingredients', 'IngredientAdminController@index')->middleware('admin');
 // Route::post('/admin/ingredients', 'IngredientAdminController@store')->middleware('admin');
 
-Route::resource('admin/ingredients', 'IngredientAdminController');
-Route::resource('admin/recipes', 'RecipeAdminController');
-Route::resource('admin/categories', 'CategoryAdminController');
-Route::resource('admin/types', 'TypeAdminController');
-Route::resource('admin/units', 'UnitAdminController');
-Route::resource('admin/months', 'MonthAdminController');
+// Route::resource('admin/ingredients', 'IngredientAdminController');
+// Route::resource('admin/recipes', 'RecipeAdminController');
+// Route::resource('admin/categories', 'CategoryAdminController');
+// Route::resource('admin/types', 'TypeAdminController');
+// Route::resource('admin/units', 'UnitAdminController');
+// Route::resource('admin/months', 'MonthAdminController');
+// Route::post('image-upload', 'CategoryAdminController@store')->name('image.upload.category');
 
-Route::post('image-upload', 'CategoryAdminController@store')->name('image.upload.category');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', 'AdminController@index');
+
+    Route::resource('admin/ingredients', 'IngredientAdminController');
+	Route::resource('admin/recipes', 'RecipeAdminController');
+	Route::resource('admin/categories', 'CategoryAdminController');
+	Route::resource('admin/types', 'TypeAdminController');
+	Route::resource('admin/units', 'UnitAdminController');
+	Route::resource('admin/months', 'MonthAdminController');
+	Route::post('image-upload', 'CategoryAdminController@store')->name('image.upload.category');
+});

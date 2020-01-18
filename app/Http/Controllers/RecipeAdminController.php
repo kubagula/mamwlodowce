@@ -8,6 +8,7 @@ use App\Ingredient;
 use App\Category;
 use App\Unit;
 use Session;
+use Illuminate\Database\Eloquent\Builder;
 
 class RecipeAdminController extends Controller
 {
@@ -49,7 +50,7 @@ class RecipeAdminController extends Controller
 
         $recipe->title = $request->title;
         $recipe->description = $request->description;
-        $recipe->url = $request->url;
+        $recipe->url = "http://".$request->url;
 
         $recipe->save(); 
         $recipeId = $recipe->id;    
@@ -127,22 +128,5 @@ class RecipeAdminController extends Controller
 
         return redirect()->action('RecipeAdminController@index');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function ingredients($id)
-    {   
-        $ingredient = Ingredient::find($id);
-        $recipes = array();
-
-        foreach($ingredient->recipes as $recipe) {
-            $recipes[$recipe->title] = ['description' => $recipe->description, 'url' => $recipe->url];
-        }        
-        
-        return view('recipes-list', ['recipes' => $recipes, 'ingredient' => $ingredient->name]);        
-    }
+    
 }

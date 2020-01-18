@@ -18,7 +18,7 @@ class Ingredient extends Model
      */
     public function recipes()
     {
-        return $this->belongsToMany('App\Recipe');
+        return $this->belongsToMany('App\Recipe')->withPivot('unit_id', 'value');
     }
 
     /**

@@ -23,7 +23,7 @@ class CalendarController extends Controller
                 $monthsIngredients[$month->name][] = ['id' => $ingredient->id, 'name' => $ingredient->name];    
             }            
         }
-                
+        // dd($monthsIngredients);        
         return view('calendar', ['monthsIngredients' => $monthsIngredients]);
     }
 

@@ -7,20 +7,26 @@
 @endsection
 
 @section('pageTitle')
-<h1>Kalendarz sezonowy</h1>
+    <h1>Kalendarz sezonowy</h1>
 @endsection
 
 @section('content')
-    <div class="months">
-        <ul>
+<div class="description">Podczas planowania posiłków warto wziąć pod uwagę warzywa i owoce, na które w danym miesiącu jest sezon. Dzięki temu będą one nie tylko tańsze, ale i bardziej wartościowe. Kliknij w wybrany składnik żeby zobaczyć przepisy, które go zawierają.</div>
+
         @foreach ($monthsIngredients as $month => $ingredients)
-            <li>{{ $month }}</li>
+        <div class="recipe">
+            <h2>{{ $month }}</h2>
             	@foreach ($ingredients as $ingredient)
-            		<a href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $ingredient['name'] }}</a>
-            	@endforeach
-            <hr>
+            		<a class="ingredientsList" href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $ingredient['name'] }}  </a>
+            	@endforeach            
+        </div>    
         @endforeach
-        </ul>
-    </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        markMonth();
+    });
+</script>
+
 @endsection
                 

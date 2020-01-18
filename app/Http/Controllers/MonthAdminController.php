@@ -15,9 +15,9 @@ class MonthAdminController extends Controller
      */
     public function index()
     {
-        $monthsAll = Month::all();        
-
-        return view('admin.months', ['months' => $monthsAll]);
+       $monthsAll = Month::all();    
+           
+       return view('admin.months', ['months' => $monthsAll]);
     }
 
     /**

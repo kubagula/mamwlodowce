@@ -37,39 +37,82 @@ function addIngredientStart() {
     sessionStorage.setItem("ingredientStart", JSON.stringify(ingredientStart));     
 }
 
-// dodaje do tablicy składnik którego brakuje
-function addSessionStorageShortage(id) {
-    ingredientsShortage = JSON.parse(sessionStorage.getItem("ingredientsShortage"));
-    ingredientStart = JSON.parse(sessionStorage.getItem("ingredientStart"));
-
-    if(ingredientsShortage != null) {        
-        ingredientsShortage[ingredientsShortage.length] = ({'id': id});        
-        sessionStorage.setItem("ingredientsShortage", JSON.stringify(ingredientsShortage));        
-    } else {
-        ingredientsShortage = [{'id': id}];
-        sessionStorage.setItem("ingredientsShortage", JSON.stringify(ingredientsShortage));        
-    }    
+// dodaje do tablicy składnik którego brakuje, ajaxem pobiera listę przepisów bez tego składnika
+function turnOffIngredient() { 
     
-    $.ajax({
-    url         : "/wybrane-przepisy", //wymagane, gdzie się łączymy
-    method      : "get", //typ połączenia, domyślnie get
-    contentType : 'application/json', //gdy wysyłamy dane czasami chcemy ustawić ich typ
-    dataType    : 'html', //typ danych jakich oczekujemy w odpowiedzi
-    data        : { //dane do wysyłki
-        ingredientStart : sessionStorage.getItem("ingredientStart"),
-        ingredientsShortage : sessionStorage.getItem("ingredientsShortage")
-    },
-    success: function(result){
-        $("#listRecipes").html(result);
-      }
-    }); 
+    $(".deleteIngredient").click(function(index, element) {    
+        let id = $(this).attr("data-ingredient-id");
+        console.log(id);       
+
+        ingredientsShortage = JSON.parse(sessionStorage.getItem("ingredientsShortage"));
+        ingredientStart = JSON.parse(sessionStorage.getItem("ingredientStart"));
+
+        if(ingredientsShortage != null) {        
+            ingredientsShortage[ingredientsShortage.length] = ({'id': id});        
+            sessionStorage.setItem("ingredientsShortage", JSON.stringify(ingredientsShortage));        
+        } else {
+            ingredientsShortage = [{'id': id}];
+            sessionStorage.setItem("ingredientsShortage", JSON.stringify(ingredientsShortage));        
+        }    
+        
+        $.ajax({
+        url         : "/wybrane-przepisy", //wymagane, gdzie się łączymy
+        method      : "get", //typ połączenia, domyślnie get
+        contentType : 'application/json', //gdy wysyłamy dane czasami chcemy ustawić ich typ
+        dataType    : 'html', //typ danych jakich oczekujemy w odpowiedzi
+        data        : { //dane do wysyłki
+            ingredientStart : sessionStorage.getItem("ingredientStart"),
+            ingredientsShortage : sessionStorage.getItem("ingredientsShortage")
+        },
+        success: function(result){
+            $("#listRecipes").html(result);
+            $("[data-ingredient-id='"+id+"']").siblings().addClass("noActive");
+            $("[data-ingredient-id='"+id+"']").unbind('click');
+            $("[data-ingredient-id='"+id+"']").attr('onClick', 'restoreIngredient(this);');
+          }
+        });
+
+    });     
 }
 
 function markMonth() {
     let today = new Date();    
-    let todayMonth = today.getUTCMonth();
-    console.log(todayMonth);
+    let todayMonth = today.getUTCMonth();    
 
     let monthsIngredients = document.getElementsByTagName('h2');
     monthsIngredients[todayMonth].parentElement.classList.add("todayMonth");;
+}
+
+
+function restoreIngredient(e) {
+    console.log(e);
+    let id = $(e).attr("data-ingredient-id");
+    ingredientsShortage = JSON.parse(sessionStorage.getItem("ingredientsShortage"));
+    console.log(ingredientsShortage);
+
+    // znajduje w tablicy obiektów ten, który chcemy przywrócić i usuwa z tej tablicy
+    ingredientsShortage.splice(ingredientsShortage.findIndex(v => v.id === id), 1);
+    console.log(ingredientsShortage);
+    sessionStorage.setItem("ingredientsShortage", JSON.stringify(ingredientsShortage)); 
+
+    $.ajax({
+        url         : "/wybrane-przepisy", //wymagane, gdzie się łączymy
+        method      : "get", //typ połączenia, domyślnie get
+        contentType : 'application/json', //gdy wysyłamy dane czasami chcemy ustawić ich typ
+        dataType    : 'html', //typ danych jakich oczekujemy w odpowiedzi
+        data        : { //dane do wysyłki
+            ingredientStart : sessionStorage.getItem("ingredientStart"),
+            ingredientsShortage : sessionStorage.getItem("ingredientsShortage")
+        },
+        success: function(result){
+            $("#listRecipes").html(result);
+            // $("[data-ingredient-id='"+id+"']").siblings().addClass("noActive");
+            // $("[data-ingredient-id='"+id+"']").unbind('click');
+            // $("[data-ingredient-id='"+id+"']").attr('onClick', 'restoreIngredient(this);');
+          }
+        });       
+
+    $("[data-ingredient-id='"+id+"']").siblings().removeClass("noActive");
+    // $("[data-ingredient-id='"+id+"']").unbind('click');
+    $("[data-ingredient-id='"+id+"']").attr('onClick', 'turnOffIngredient();');
 }

@@ -370,4 +370,11 @@ span.recipeCategories {
 	padding: 20px;
 	color: #c49b63;		
 }
+
+.noActive {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: gray;
+}
 /* end recipe detail */

@@ -50,7 +50,7 @@
             <p class="menuItemText"><a href="{{ route('home') }}">Sztuczne dodatki</a></p>    
         </div>
     </div>
-    <!-- <div class="last">
+    {{-- <!--<div class="last">
     	Ostatnio dodane przepisy
     	<div class="ingredients">    			
 			    @foreach ($lastAddedRecipes as $recipe)
@@ -61,6 +61,6 @@
             		</div>
             	@endforeach        		
     	</div>
-    </div> -->
+    </div> --> --}}
 @endsection
                 

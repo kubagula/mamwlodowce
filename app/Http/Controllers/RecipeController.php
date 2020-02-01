@@ -20,7 +20,9 @@ class RecipeController extends Controller
     public function index()
     {
         $recipesAll = Recipe::all();        
-        $categoriesAll = Category::all();
+        // $categoriesAll = Category::all();
+        $categoriesAll = Category::has('recipes')->get();
+        // dd($categoriesAll);
 
         foreach($recipesAll as $recipe) {  
             $recipes[$recipe->title] = ['id' => $recipe->id, 'description' => $recipe->description, 'url' => $recipe->url, 'recipeIngredients' => $recipe->ingredients, 'recipeCategories' => $recipe->categories];
@@ -38,10 +40,9 @@ class RecipeController extends Controller
     public function recipesWithIngredient($id)
     {   
         // dd($id);
-        $ingredient = Ingredient::find($id);
+        $ingredient = Ingredient::find($id); 
 
-        if(count($ingredient->recipes) > 0) {
-            $ingredientName = $ingredient->name;
+        if(count($ingredient->recipes) > 0) {    
             $recipes = array();
 
             foreach($ingredient->recipes as $recipe) {                        
@@ -51,11 +52,16 @@ class RecipeController extends Controller
 
                 $recipes[$recipe->title] = ['id' => $recipe->id, 'description' => $recipe->description, 'url' => $recipe->url, 'recipeIngredients' => $recipe->ingredients, 'recipeCategories' => $recipe->categories];
             }            
-                
-            return view('recipes-with', ['recipes' => $recipes, 'ingredientName' => $ingredientName, 'ingredientId' => $id, 'ingredients' => $ingredients]); 
-        } else {                      
-            return redirect()->action('RecipeController@index');
-        }
+        } else {
+           $recipes = [];
+           foreach(Ingredient::all() as $ingredient) {
+                $ingredients[$ingredient->id] = $ingredient->name;
+           }
+        }   
+
+        return view('recipes-with', ['recipes' => $recipes, 'ingredientName' => $ingredient->name, 'ingredientId' => $id, 'ingredients' => $ingredients]); 
+            // return redirect()->action('RecipeController@index');
+        
     }    
 
     /**

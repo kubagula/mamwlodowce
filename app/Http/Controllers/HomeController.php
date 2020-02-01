@@ -29,26 +29,26 @@ class HomeController extends Controller
         // $recipes = Recipe::all();
         // return view('home', ['recipes' => $recipes]);       
         $ingredients = Ingredient::where('onhome', 1)->get();
-        $categories = Category::all();
-        $lastRecipes = Recipe::orderBy('id', 'desc')->take(5)->get();
+        $categories = Category::has('recipes')->get(); //Category::all();
+        // $lastRecipes = Recipe::orderBy('id', 'desc')->take(5)->get();
         // dd($lastRecipes);
 
-        $lastAddedRecipes = array();
+        // $lastAddedRecipes = array();
 
-        foreach ($lastRecipes as $key => $value) {
-            $categoriesLastRecipes = Recipe::find($value->id)->categories()->orderBy('name')->get();
-            // var_dump($value->id);
-            $lastAddedRecipes[$value->id]['title'] = $value->title;
-            $lastAddedRecipes[$value->id]['categories'] = array();
+        // foreach ($lastRecipes as $key => $value) {
+        //     $categoriesLastRecipes = Recipe::find($value->id)->categories()->orderBy('name')->get();
+        //     // var_dump($value->id);
+        //     $lastAddedRecipes[$value->id]['title'] = $value->title;
+        //     $lastAddedRecipes[$value->id]['categories'] = array();
 
-            foreach($categoriesLastRecipes as $category) {                             
-                $lastAddedRecipes[$value->id]['categories'][$category->id] = $category->name;                
-            }
+        //     foreach($categoriesLastRecipes as $category) {                             
+        //         $lastAddedRecipes[$value->id]['categories'][$category->id] = $category->name;                
+        //     }
             
-        }        
+        // }        
         // dd($lastAddedRecipes);
 
-        return view('home', ['ingredients' => $ingredients, 'categories' => $categories, 'lastAddedRecipes' => $lastAddedRecipes]);
+        return view('home', ['ingredients' => $ingredients, 'categories' => $categories, /*'lastAddedRecipes' => $lastAddedRecipes*/]);
     }    
 
     // public function admin()

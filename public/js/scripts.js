@@ -39,10 +39,13 @@ function addIngredientStart() {
 
 // dodaje do tablicy składnik którego brakuje, ajaxem pobiera listę przepisów bez tego składnika
 function turnOffIngredient() { 
-    
+    $(".imageOk").click(function(index, element) {
+        restoreIngredient($(this));
+    });
+
     $(".deleteIngredient").click(function(index, element) {    
         let id = $(this).attr("data-ingredient-id");
-        console.log(id);       
+        console.log("dodanie do tablicy");       
 
         ingredientsShortage = JSON.parse(sessionStorage.getItem("ingredientsShortage"));
         ingredientStart = JSON.parse(sessionStorage.getItem("ingredientStart"));
@@ -54,6 +57,11 @@ function turnOffIngredient() {
             ingredientsShortage = [{'id': id}];
             sessionStorage.setItem("ingredientsShortage", JSON.stringify(ingredientsShortage));        
         }    
+
+        //okejce usunięcie invisible            
+            $("[data-ingredient-id-ok='"+id+"']").show();
+            //krzyżykowi nadanie stylu invisible
+            $("[data-ingredient-id='"+id+"']").hide();
         
         $.ajax({
         url         : "/wybrane-przepisy", //wymagane, gdzie się łączymy
@@ -65,10 +73,20 @@ function turnOffIngredient() {
             ingredientsShortage : sessionStorage.getItem("ingredientsShortage")
         },
         success: function(result){
-            $("#listRecipes").html(result);
-            $("[data-ingredient-id='"+id+"']").siblings().addClass("noActive");
-            $("[data-ingredient-id='"+id+"']").unbind('click');
-            $("[data-ingredient-id='"+id+"']").attr('onClick', 'restoreIngredient(this);');
+            $("#listRecipes").html(result);           
+
+            //nadanie nazwie składnika szarego koloru i przekreślenia
+            // $("[data-ingredient-id='"+id+"']").parent("p").addClass("noActive");
+            $("#ingredientsList"+id).addClass("noActive");
+
+            
+            // $("[data-ingredient-id='"+id+"']").unbind('click');
+
+            // //okejce usunięcie invisible            
+            // $("[data-ingredient-id-ok='"+id+"']").show();          
+            
+
+            console.log("ustawienie przywracania");       
           }
         });
 
@@ -86,15 +104,22 @@ function markMonth() {
 
 function restoreIngredient(e) {
     console.log(e);
-    let id = $(e).attr("data-ingredient-id");
-    ingredientsShortage = JSON.parse(sessionStorage.getItem("ingredientsShortage"));
-    console.log(ingredientsShortage);
+    console.log("kliknięcie w przywróć");
+    let id = $(e).attr("data-ingredient-id-ok");
+    ingredientsShortage = JSON.parse(sessionStorage.getItem("ingredientsShortage"));    
 
     // znajduje w tablicy obiektów ten, który chcemy przywrócić i usuwa z tej tablicy
     ingredientsShortage.splice(ingredientsShortage.findIndex(v => v.id === id), 1);
-    console.log(ingredientsShortage);
+    
     sessionStorage.setItem("ingredientsShortage", JSON.stringify(ingredientsShortage)); 
+console.log(id);
+            $("#ingredientsList"+id).removeClass("noActive");
+            $("[data-ingredient-id='"+id+"']").show();
+            $("[data-ingredient-id-ok='"+id+"']").hide();
+    // $("[data-ingredient-id='"+id+"']").unbind('click');
+    // $("[data-ingredient-id='"+id+"']").attr('onClick', 'turnOffIngredient();');
 
+    console.log("zrobienie aktywnego");
     $.ajax({
         url         : "/wybrane-przepisy", //wymagane, gdzie się łączymy
         method      : "get", //typ połączenia, domyślnie get
@@ -109,10 +134,10 @@ function restoreIngredient(e) {
             // $("[data-ingredient-id='"+id+"']").siblings().addClass("noActive");
             // $("[data-ingredient-id='"+id+"']").unbind('click');
             // $("[data-ingredient-id='"+id+"']").attr('onClick', 'restoreIngredient(this);');
-          }
-        });       
+            // $("[data-ingredient-id='"+id+"']").siblings().removeClass("noActive");
 
-    $("[data-ingredient-id='"+id+"']").siblings().removeClass("noActive");
-    // $("[data-ingredient-id='"+id+"']").unbind('click');
-    $("[data-ingredient-id='"+id+"']").attr('onClick', 'turnOffIngredient();');
+          }
+        });  
 }
+
+// $(".ok2").hide();

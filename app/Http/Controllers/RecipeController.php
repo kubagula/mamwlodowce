@@ -38,27 +38,26 @@ class RecipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function recipesWithIngredient($id)
-    {   
-        // dd($id);
+    {           
         $ingredient = Ingredient::find($id); 
-
+        
         if(count($ingredient->recipes) > 0) {    
             $recipes = array();
 
             foreach($ingredient->recipes as $recipe) {                        
-                foreach($recipe->ingredients as $ingredient) {
-                    $ingredients[$ingredient->id] = $ingredient->name;
+                foreach($recipe->ingredients as $ingredientInRecipe) {
+                    $ingredients[$ingredientInRecipe->id] = $ingredientInRecipe->name;
                 }
 
                 $recipes[$recipe->title] = ['id' => $recipe->id, 'description' => $recipe->description, 'url' => $recipe->url, 'recipeIngredients' => $recipe->ingredients, 'recipeCategories' => $recipe->categories];
             }            
         } else {
            $recipes = [];
-           foreach(Ingredient::all() as $ingredient) {
-                $ingredients[$ingredient->id] = $ingredient->name;
+           foreach(Ingredient::all() as $ingredientInRecipe) {
+                $ingredients[$ingredientInRecipe->id] = $ingredientInRecipe->name;
            }
         }   
-
+        
         return view('recipes-with', ['recipes' => $recipes, 'ingredientName' => $ingredient->name, 'ingredientId' => $id, 'ingredients' => $ingredients]); 
             // return redirect()->action('RecipeController@index');
         
@@ -99,6 +98,11 @@ class RecipeController extends Controller
         $ingredientStartId = intval($ingredientStart['id']);
         
         $ingredientsShortage = json_decode($request->ingredientsShortage, true);
+
+        // if(empty($ingredientsShortage)) {
+        //    return redirect()->action('RecipeController@recipesWithIngredient', ['id' => $ingredientStartId]);
+        // }
+
         $whereCondition = array();
         
         foreach($ingredientsShortage as $value) {            
@@ -115,9 +119,15 @@ class RecipeController extends Controller
             $element = (int) $element;
         });
 
-        $results = DB::select(         
-            DB::raw("SELECT r.id FROM recipes r JOIN ingredient_recipe ir ON ir.recipe_id = r.id join ingredients i on ir.ingredient_id = i.id where i.id in (".implode(',', $ingredientStartToSql).") and r.id not in (SELECT r.id FROM recipes r JOIN  ingredient_recipe ir ON ir.recipe_id = r.id join ingredients i on ir.ingredient_id = i.id where i.id in (".implode(',', $whereCondition).") )")
-        );
+        if(empty($ingredientsShortage)) {
+            $results = DB::select(         
+                DB::raw("SELECT r.id FROM recipes r JOIN ingredient_recipe ir ON ir.recipe_id = r.id join ingredients i on ir.ingredient_id = i.id where i.id in (".implode(',', $ingredientStartToSql).")")
+            );
+        } else {
+            $results = DB::select(         
+                DB::raw("SELECT r.id FROM recipes r JOIN ingredient_recipe ir ON ir.recipe_id = r.id join ingredients i on ir.ingredient_id = i.id where i.id in (".implode(',', $ingredientStartToSql).") and r.id not in (SELECT r.id FROM recipes r JOIN  ingredient_recipe ir ON ir.recipe_id = r.id join ingredients i on ir.ingredient_id = i.id where i.id in (".implode(',', $whereCondition).") )")
+            );
+        }
          
         // dd($results);
         $recipes = [];

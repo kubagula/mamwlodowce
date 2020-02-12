@@ -281,6 +281,29 @@ p.recipeUrl {
 span.recipeCategories {
 	font-size: 12px;
 }
+
+.ingredientsInRecipes{
+	display: flex;
+	align-items: center;
+	padding: 5px;
+}
+
+.noActive {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: line-through;
+  font-weight: 700;
+  color: gray;
+}
+
+.deleteIngredient:hover {
+  cursor: pointer;
+}
+
+.invisible {
+	display: none;
+	z-index: -10;
+}
 /* end recipes-list*/
 
 /* calendar */
@@ -371,10 +394,4 @@ span.recipeCategories {
 	color: #c49b63;		
 }
 
-.noActive {
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
-  color: gray;
-}
 /* end recipe detail */

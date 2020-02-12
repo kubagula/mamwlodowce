@@ -19,12 +19,14 @@
 		<div class="searchRecipes">
 			<p>Usuń składniki których nie masz w domu:</p>		
 
-			@forelse($ingredients as $key => $ingredient)
-				{{-- <!-- <p><a class="ingredientsList" href="{{route('recipes.ingredients', $key)}}">{{ $ingredient }}  </a><a href="#"><img id="addSession" style="width: 15px; height: 15px" src="{{ asset('images/cross.png') }}" onclick="javascript:addSessionStorageShortage( {{ $key }} );"></a></p> --> --}}
-				<p>
-					<a class="ingredientsList" href="{{route('recipes.ingredients', $key)}}">{{ $ingredient }}  </a>
-					<img data-ingredient-id = "{{ $key }}" class="deleteIngredient" style="width: 15px; height: 15px" src="{{ asset('images/cross.png') }}">
-				</p>
+			@forelse($ingredients as $key => $ingredient)				
+				@if ($key != $ingredientId)
+					<div class="ingredientsInRecipes">
+						<a class="ingredientsList" id="ingredientsList{{ $key }}" href="{{route('recipes.ingredients', $key)}}">{{ $ingredient }}  </a>
+						<img data-ingredient-id = "{{ $key }}" class="deleteIngredient" src="{{ asset('images/nook.png') }}">
+						<img data-ingredient-id-ok = "{{ $key }}" class="imageOk" src="{{ asset('images/ok.png') }}">
+					</div>				
+				@endif
 			@empty
 				Nie ma składnika 
 			@endforelse 			
@@ -62,6 +64,7 @@
     $(document).ready(function() {
     	addIngredientStart();    	
     	turnOffIngredient();
+    	$(".imageOk").hide();
     });
 </script>
 

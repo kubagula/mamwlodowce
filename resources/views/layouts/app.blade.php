@@ -23,7 +23,7 @@
                             <div class="nav-item"><a href="{{ route('recipes') }}" class="nav-item {{ (request()->is('przepisy*')) ? 'active' : '' }}">Przepisy</a></div>
                             <div class="nav-item"><a href="{{ route('calendar') }}" class="nav-item {{ (request()->is('kalendarz-sezonowy')) ? 'active' : '' }}">Kalendarz sezonowy</a></div>
                             <div class="nav-item"><a href="{{ route('home') }}" class="nav-item">Przelicznik wagi</a></div>
-                            <div class="nav-item"><a href="{{ route('home') }}" class="nav-item">Sztuczne dodatki</a></div>
+                            <div class="nav-item"><a href="{{ route('preservatives') }}" class="nav-item {{ (request()->is('sztuczne-dodatki')) ? 'active' : '' }}">Sztuczne dodatki</a></div>
                             <div class="nav-item"><a href="{{ route('home') }}" class="nav-item">Licznik kalorii</a></div>                
                     </nav>
                 </div>    

@@ -17,6 +17,9 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('admin/months')}}">Miesiące</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('admin/preservatives')}}">Sztuczne dodatki</a>
         </li>                          
     </ul>                                     
 @else

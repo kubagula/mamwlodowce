@@ -11,6 +11,8 @@ html {
 
 body {
     /*font-family: Oxygen, sans-serif; */
+    /* width: 90%;
+    margin: 0 auto; */
     font-family: 'Courgette', cursive;
     font-size: 14px;
     line-height: 22px;
@@ -171,6 +173,8 @@ p {
  	font-weight: 700; 
 	font-style: normal; 
 	font-size: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .categories div {
@@ -395,3 +399,18 @@ span.recipeCategories {
 }
 
 /* end recipe detail */
+
+/* preservatives */
+.preservativeCode {
+	font-size: 26px;
+}
+
+.preservativeOk {
+	border: 1px solid green;
+}
+
+.preservativeNoOk {
+	border: 1px solid red;
+}
+
+/* preservatives end */

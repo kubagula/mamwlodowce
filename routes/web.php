@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/kalendarz-sezonowy', 'CalendarController@index')->name('calendar');
+Route::get('/sztuczne-dodatki', 'PreservativeController@index')->name('preservatives');
 Route::get('/przepisy', 'RecipeController@index')->name('recipes');
 
 Route::get('/ajax', 'RecipeController@ajax')->name('ajax');
@@ -50,5 +51,6 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('admin/types', 'TypeAdminController');
 	Route::resource('admin/units', 'UnitAdminController');
 	Route::resource('admin/months', 'MonthAdminController');
+	Route::resource('admin/preservatives', 'PreservativeAdminController');
 	Route::post('image-upload', 'CategoryAdminController@store')->name('image.upload.category');
 });

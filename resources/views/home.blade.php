@@ -47,7 +47,7 @@
         </div>
         <div class="menuItem">
             <img src="{{ asset('images/sztuczne-dodatki350x197.jpg') }}" class="menuItemImg">
-            <p class="menuItemText"><a href="{{ route('home') }}">Sztuczne dodatki</a></p>    
+            <p class="menuItemText"><a href="{{ route('preservatives') }}">Sztuczne dodatki</a></p>    
         </div>
     </div>
     {{-- <!--<div class="last">

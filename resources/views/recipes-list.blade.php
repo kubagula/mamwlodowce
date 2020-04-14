@@ -17,28 +17,29 @@
 	<div class="recipesContainer">
 		<div class="searchRecipes">
 			<p>Kategorie przepisów</p>
-			@foreach ($categories as $category)
-            		<div><img style="width: 30px; height: 30px" src="{{ asset('images/categories/'.$category['photo'].'') }}"><a class="categoriesList" href="{{route('recipes.categories', $category['id'])}}">{{ $category['name'] }}</a></div>
+			<ul class="unordered-list">
+			@foreach ($categories as $category)            		
+            	<!--<img style="width: 30px; height: 30px" src="{{ asset('images/categories/'.$category['photo'].'') }}"> -->
+            	<li><a class="categoriesList" href="{{route('recipes.categories', $category['id'])}}">{{ $category['name'] }}</a></li>
         	@endforeach
+        	</ul>
 		</div>
 
 		<div class="listRecipes">
 			@foreach($recipes as $title => $recipe)			
 			    <div class="recipe">
-					<h2><a href="{{route('recipes.recipe', $recipe['id'])}}">{{ $title }} </a>
-						<span class="recipeCategories">	
-						(						
+					<a href="{{route('recipes.recipe', $recipe['id'])}}">{{ $title }} </a>
+						<span class="recipeCategories">													
 							@foreach($recipe['recipeCategories'] as $key => $category)			
-					        	<a href="{{route('recipes.categories', $category['id'])}}">{{ $category['name'] }}</a> 
-					        @endforeach					        
-					    )
-				    	</span>
-					</h2>	
+					        	<a class="button" href="{{route('recipes.categories', $category['id'])}}">{{ $category['name'] }}</a> 
+					        @endforeach				        					    
+				    	</span><br>
+						
 			        <!-- <p>{{ $recipe['description'] }}</p> -->
 			        @foreach($recipe['recipeIngredients'] as $key => $ingredient)			
-			        	<a class="ingredientsList" href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $ingredient['name'] }}  </a>
+			        	<a class="button ingredientsList" href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $ingredient['name'] }}  </a>
 			        @endforeach
-			        <br><p class="recipeUrl">Przepis zaczerpnięty ze strony: <a href="{{ $recipe['url'] }}">{{ $recipe['url'] }}</a></p>
+			        <br><p class="recipeUrl">Przepis zaczerpnięty ze strony: <a class="recipeUrl" href="{{ $recipe['url'] }}">{{ $recipe['url'] }}</a></p>
 			    </div>	
 			@endforeach
 		</div>

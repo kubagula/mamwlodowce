@@ -11,16 +11,20 @@
 @endsection
 
 @section('content')
-<div class="description">Podczas planowania posiłków warto wziąć pod uwagę warzywa i owoce, na które w danym miesiącu jest sezon. Dzięki temu będą one nie tylko tańsze, ale i bardziej wartościowe. Kliknij w wybrany składnik żeby zobaczyć przepisy, które go zawierają.</div>
+    <div class="description">
+        <p>Podczas planowania posiłków warto wziąć pod uwagę warzywa i owoce, na które w danym miesiącu jest sezon. Dzięki temu będą one nie tylko tańsze, ale i bardziej wartościowe. Kliknij w wybrany składnik żeby zobaczyć przepisy, które go zawierają.</p>
+    </div>
 
-        @foreach ($monthsIngredients as $month => $ingredients)
-        <div class="recipe">
-            <h2>{{ $month }}</h2>
-            	@foreach ($ingredients as $ingredient)
-            		<a class="ingredientsList" href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $ingredient['name'] }}  </a>
-            	@endforeach            
-        </div>    
-        @endforeach
+    <div class="months">
+            @foreach ($monthsIngredients as $month => $ingredients)
+            <div class="month">
+                <h2>{{ $month }}</h2>
+                	@foreach ($ingredients as $ingredient)
+                		<a class="button" href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $ingredient['name'] }}  </a>
+                	@endforeach            
+            </div>    
+            @endforeach
+    </div>
 
 <script type="text/javascript">
     $(document).ready(function() {

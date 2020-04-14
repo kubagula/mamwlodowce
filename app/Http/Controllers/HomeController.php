@@ -29,7 +29,10 @@ class HomeController extends Controller
         // $recipes = Recipe::all();
         // return view('home', ['recipes' => $recipes]);       
         $ingredients = Ingredient::where('onhome', 1)->get();
-        $categories = Category::has('recipes')->get(); //Category::all();
+
+        // $categories = Category::has('recipes')->get(); 
+        $categories = Category::all();
+
         // $lastRecipes = Recipe::orderBy('id', 'desc')->take(5)->get();
         // dd($lastRecipes);
 

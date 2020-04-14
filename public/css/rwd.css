@@ -1,0 +1,668 @@
+/* media queries */
+/* Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1366px) { 
+	.nav-item {		
+    	font-size: 16px;    
+    	font-weight: 600;    
+    	padding: 8px;    	
+	}
+
+	.header-full {	
+		height: 80vh;    	
+	}
+
+	.intro {		
+		top: 240px;				
+	}
+
+	h3 {
+		font-size: 20px;
+		line-height: 30px;
+	}
+
+	.search {		
+	    top: 480px;	
+	    max-width: 50%;   	    
+	}
+
+	.search a {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 1112px) {
+	.logo {	
+		background: url("/images/logo-ze-sloniem-waskie.png");	
+		width: 415px;	
+	}
+
+	.nav-item {		
+    	font-size: 14px;    
+    	font-weight: 600;    
+    	padding: 4px;    	
+	}
+
+	.intro {		
+		top: 28vh;		
+		max-width: 75vw;	
+	}
+
+	.search {		
+	    top: 55vh;	    
+	    max-width: 75vw;			
+	}
+
+	.search a {
+		font-size: 18px;
+	}
+
+	.searchRecipes {
+		max-width: 40%;	
+	}	
+
+	a.ingredientsList {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 1024px) and (orientation: landscape) { 
+	.nav-item {		
+    	font-size: 14px;    
+    	font-weight: 600;    
+    	padding: 4px;    	
+	}
+
+	.header-full {	
+		height: 85vh;    	
+	}	
+
+	.header {
+		background-attachment: scroll;
+	}
+
+	.intro {		
+		top: 230px;				
+	}
+
+	.search {		
+	    top: 450px;	    	    
+	}
+
+	.search a {
+		font-size: 18px;
+	}
+
+	.ingredientsStart {
+		padding: 5px;
+	}
+
+	.categories {	 
+		font-size: 18px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.categories div {
+		margin: 20px 10px 20px 10px;		
+	}
+
+	.categories img {			
+		width: 150px; 
+		height: 150px;	
+	}
+
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+	.intro {		
+		top: 250px;				
+	}
+
+	.search {		
+	    top: 450px;	    	    
+	}
+
+	.header-full {	
+		height: 50vh;    	
+	}
+
+	.header {
+		background-attachment: scroll;
+	}
+
+	.ingredientsStart {
+		padding: 7px;
+	}
+}	
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px)  and (orientation: landscape) {
+	p {
+		font-size: 16px;
+	}
+
+	.nav-item {		
+    	font-size: 12px;    
+    	font-weight: 600;    
+    	padding: 6px;    	
+	}
+
+	.header-full {	
+		height: 142vh;    	
+	}	
+
+	.intro {		
+		top: 220px;				
+	}
+
+	.search {		
+	    top: 410px;	    	    
+	}
+
+	.search a {
+		font-size: 14px;
+	}
+
+	.search h3 {
+		padding: 5px;
+		line-height: 26px;
+	}
+
+	.ingredientsStart {
+		padding: 2px;
+	}
+
+	.categories img {			
+		width: 100px; 
+		height: 100px;	
+	}
+
+	.main {	
+ 		min-height: 50vh;
+ 	}
+
+ 	.recipeInformations {
+		max-width: 30%;
+	}
+
+	.searchRecipes {
+		max-width: 40%;	
+	}
+}
+
+@media (max-width: 992px) and (orientation: portrait) {
+	.intro {		
+		top: 230px;				
+	}
+
+	.search {		
+	    top: 420px;	    	    
+	}
+
+	.header-full {	
+		height: 50vh;    	
+	}
+
+	.recipeInformations {
+		max-width: 30%;
+	}
+
+	.searchRecipes {
+		max-width: 40%;	
+	}
+}	
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) and (orientation: landscape) { 
+	h1 {
+		padding: 20px;
+		margin-left: 0;
+	}
+
+	h2 {    
+    	font-size: 26px;		
+		line-height: 24px;	
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	p {
+		font-size: 16px;
+	}
+
+	.nav-item {		
+    	font-size: 18px;    
+    	font-weight: 500;    
+    	padding: 3px;    	
+	}
+	
+	.header-full {	
+		height: 140vh;    	
+	}
+
+	.logo {	
+		background: url("/images/logo-sam-slon.png");	
+		background-repeat: no-repeat;
+		width: 129px;	
+	}
+
+	.intro {		
+		top: 220px;				
+		left: 50vw;
+		max-width: 80vw;
+	}
+
+	.main {	
+ 		min-height: 80vh;
+ 	}
+
+	.search {		
+	    top: 380px;
+	    max-width: 80vw;	    	    
+	}
+
+	.search a {
+		font-size: 16px;
+	}
+
+	.search h3 {
+		padding-bottom: 5px;
+	}
+
+	a.button {		    
+	    padding: 3px 3px;
+	    margin: 2px 0 2px 3px;	    	    
+	    font-size: 16px;
+	}
+
+	.ingredientsStart {
+		padding: 5px;
+	}
+
+	.categories div {
+		margin: 10px 7px 10px 7px;	
+	}
+
+	.categories img {		
+		margin-bottom: 5px;
+		width: 75px; 
+		height: 75px;	
+	}
+
+	.description {
+		font-size: 16px; 
+		margin: 20px 0 20px 0;
+	}
+}
+
+@media (max-width: 768px) and (orientation: portrait) { 
+	h1 {
+		padding: 20px;
+		margin-left: 0;
+	}
+
+	h2 {    
+    	font-size: 26px;		
+		line-height: 24px;	
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	p {
+		font-size: 16px;
+	}
+
+	.nav-item {		
+    	font-size: 18px;    
+    	font-weight: 500;    
+    	padding: 3px;    	
+	}
+	
+	.header-full {	
+		height: 50vh;    	
+	}
+
+	.logo {	
+		background: url("/images/logo-sam-slon.png");	
+		background-repeat: no-repeat;
+		width: 129px;	
+	}
+
+	.intro {		
+		top: 230px;				
+		left: 50vw;
+		max-width: 80vw;
+	}
+
+	.main {	
+ 		min-height: 50vh;
+ 	}
+
+	.search {		
+	    top: 380px;
+	    max-width: 80vw;	    	    
+	}
+
+	.search a {
+		font-size: 16px;
+	}
+
+	.search h3 {
+		padding-bottom: 5px;
+	}
+
+	a.button {		    
+	    padding: 3px 3px;
+	    margin: 2px 0 2px 3px;	    	    
+	    font-size: 16px;
+	}
+
+	.ingredientsStart {
+		padding: 5px;
+	}
+
+	.categories div {
+		margin: 10px 7px 10px 7px;	
+	}
+
+	.categories img {		
+		margin-bottom: 5px;
+		width: 75px; 
+		height: 75px;	
+	}
+
+	.description {
+		font-size: 16px; 
+		margin: 20px 0 20px 0;
+	}
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+	h3 {
+		line-height: 21px;
+		font-size: 18px;
+	}
+
+	p {
+		font-weight: 400px;
+	} 
+
+	.intro {		
+		top: 180px;				
+		left: 50vw;
+	}
+
+	.menu {
+		margin-top: 1vh;
+		margin-left: 1vw;	
+	}
+
+	.logo {	
+		background: url("/images/logo-slon-60x60.png");	
+		height: 60px;		
+		width: 60px;	
+	}	
+
+	.header-full {	
+		height: 90vh;    	
+	}
+
+	.main {	
+ 		min-height: 100vh;
+ 	}
+
+	.search {		
+	    top: 430px;	 
+	    line-height: 18px;   	    
+	}
+
+	.search h3 {
+		font-size: 16px;
+		padding: 
+	}
+
+	/*
+ 	* Made by Erik Terwan
+ 	* 24th of November 2015
+ 	* MIT license
+ 	*
+ 	*
+ 	* If you are thinking of using this in
+ 	* production code, beware of the browser
+ 	* prefixes.
+ 	*/
+
+	#menuToggle {
+  		display: block;
+  		position: absolute;
+  		top: 30px;
+  		right: 30px;
+  
+  		z-index: 1;
+  
+  		-webkit-user-select: none;
+  		user-select: none;
+	}
+
+	#menuToggle input {
+		display: block;
+		width: 40px;
+		height: 32px;
+		position: absolute;
+		top: -7px;
+		left: -5px;
+		  
+		cursor: pointer;
+		  
+		opacity: 0; /* hide this */
+		z-index: 2; /* and place it over the hamburger */
+		  
+		-webkit-touch-callout: none;
+	}
+
+	/*
+ 	* Just a quick hamburger
+ 	*/
+	#menuToggle span {
+  		display: block;
+  		width: 33px;
+  		height: 4px;
+  		margin-bottom: 5px;
+  		position: relative;
+  
+  		background: #cdcdcd;
+  		border-radius: 3px;
+  
+  		z-index: 1;
+  
+  		transform-origin: 4px 0px;
+  
+  		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+	}
+
+	#menuToggle span:first-child {
+  		transform-origin: 0% 0%;
+	}
+
+	#menuToggle span:nth-last-child(2)
+	{
+  		transform-origin: 0% 100%;
+	}
+
+	/* 
+ 	* Transform all the slices of hamburger
+ 	* into a crossmark.
+ 	*/
+	#menuToggle input:checked ~ span {
+  		opacity: 1;
+  		transform: rotate(45deg) translate(-2px, -1px);
+  		background: #232323;
+	}
+
+	/*
+ 	* But let's hide the middle one.
+ 	*/
+	#menuToggle input:checked ~ span:nth-last-child(3) {
+  		opacity: 0;
+  		transform: rotate(0deg) scale(0.2, 0.2);
+	}
+
+	/*
+ 	* Ohyeah and the last one should go the other direction
+ 	*/
+	#menuToggle input:checked ~ span:nth-last-child(2) {
+  		opacity: 1;
+  		transform: rotate(-45deg) translate(0, -1px);
+	}
+
+	/*
+ 	* Make this absolute positioned
+ 	* at the top left of the screen
+ 	*/
+	#menuList {
+  		position: absolute;
+  		width: 300px;
+  		margin: -100px 0 0 0;
+  		padding: 30px;
+  		padding-top: 100px;
+  		right: -100px;
+  
+  		background: #ededed;
+  		list-style-type: none;
+  		-webkit-font-smoothing: antialiased;
+  	/* to stop flickering of text in safari */
+  
+  		transform-origin: 0% 0%;
+  		transform: translate(100%, 0);
+  
+  		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+	}
+
+	#menuList li {
+  		padding: 10px 0;
+  		font-size: 22px;
+	}
+
+	/*
+ 	* And let's fade it in from the left
+ 	*/
+	#menuToggle input:checked ~ ul {
+  		transform: scale(1.0, 1.0);
+  		opacity: 1;
+	}
+
+}
+
+@media (max-width: 375px) { 
+	h1 {
+		padding: 10px;		
+	}
+
+	h2 {  
+		font-size: 20px;       						
+	}
+
+	h3 {
+		font-size: 16px;
+		line-height: 26px;
+	}
+
+	h4 {
+		font-size: 16px;
+	}
+
+	p {
+		font-size: 14px;
+	}
+
+	span {
+		font-size: 15px;
+	}	
+
+	.intro {
+		top: 180px;
+	}
+
+	.search {		
+	    top: 420px;	    	    
+	}
+
+	a.button {
+		font-size: 14px;
+	}
+
+	.recipesContainer {		
+ 		flex-direction: column; 		
+	}	
+
+	.recipeContainer {
+		flex-direction: column;
+	}
+
+	.recipeInformations {		
+		max-width: 90%;		
+	}
+
+	.recipeInformationCategories {
+		max-width: 90%;			
+		font-weight: 500; 	
+		font-size: 12px;	
+		padding: 5px;
+		margin-top: 5px;
+	}
+
+	.recipeIngredients {		
+		font-weight: 500; 	
+		font-size: 12px;	
+		padding: 5px;
+		margin-top: 5px;
+	}
+
+	.unordered-list li:before {	    
+	    width: 10px;
+	    height: 10px;
+	    top: 4px;	    
+	    border-width: 1px;	    
+	}
+
+	.unordered-list li {	    
+	    padding-left: 20px;
+	    line-height: 1.62em !important;
+	}
+
+	.recipe {
+		margin: 10px 0 10px 0;
+	}
+
+	a.categoriesList {
+    	padding-left: 0px;
+	}
+
+	.searchRecipes {
+		max-width: 96%;
+		font-size: 10px;
+		font-weight: 500;
+		line-height: 20px;
+	}
+
+	.description {
+		font-size: 12px; 
+		margin: 10px 0 10px 0;
+	}
+
+	.pageTitle {
+		line-height: 28px;
+	}
+
+	span.preservativeCode {
+		font-size: 20px;
+	}
+}
+/* media queries end 

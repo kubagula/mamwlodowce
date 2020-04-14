@@ -17,25 +17,29 @@
 		<div class="recipeInformations">
 			<div class="recipeIngredients">
 				<p>Składniki przepisu</p>
-				@foreach ($recipeIngredients as $key => $ingredient)
-	            		<div><a href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $key }} </a>{{ $ingredient['value'] }} {{ $ingredient['unit'] }}</div>
-	        	@endforeach
+				<ul class="unordered-list">
+					@foreach ($recipeIngredients as $key => $ingredient)
+		            		<li><a href="{{route('recipes.ingredients', $ingredient['id'])}}">{{ $key }} </a>{{ $ingredient['value'] }} {{ $ingredient['unit'] }}</li>
+		        	@endforeach
+	        	</ul>
 			</div>
 
 			<div class="recipeInformationCategories">
 				<p>Kategorie przepisu</p>
-				@foreach ($recipeCategories as $category)
-	            		<div><img style="width: 30px; height: 30px" src="{{ asset('images/categories/'.$category['photo'].'') }}"><a class="categoriesList" href="{{route('recipes.categories', $category['id'])}}">{{ $category['name'] }}</a></div>
-	        	@endforeach
+				<ul class="unordered-list">
+					@foreach ($recipeCategories as $category)
+		            		<li><a class="categoriesList" href="{{route('recipes.categories', $category['id'])}}">{{ $category['name'] }}</a></li>
+		        	@endforeach
+	        	</ul>
 			</div>
 		</div>
 
-	    <div class="recipeDetails">
-	    	<div class="recipeDescription">
+	    <div class="recipe">
+	    	<div class="recipe">
 	        	<p>{!! nl2br($recipe->description) !!}</p>
 	        </div>
-	        <div class="recipeDescriptionUrl">
-	        	Przepis zaczerpnięty ze strony: <a href="{{ $recipe->url }}">{{ $recipe->url }}</a>
+	        <div class="recipeUrl">
+	        	Przepis zaczerpnięty ze strony: <a class="recipeUrl" href="{{ $recipe->url }}">{{ $recipe->url }}</a>
 	        </div>
 	    </div>
 	</div>

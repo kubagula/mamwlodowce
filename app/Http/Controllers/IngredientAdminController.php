@@ -103,10 +103,20 @@ class IngredientAdminController extends Controller
      */
     public function destroy($id)
     {
-        Ingredient::destroy($id);
+        $ingredient = Ingredient::find($id);
+        $recipeWithIngredient = $ingredient->recipes->count();
 
-        $message = "Składnik usunięto";
+        if ($recipeWithIngredient === 0) {
+            Ingredient::destroy($id);
+            $message = 'Składnik usunięto';
+            $type = 'alert-info';
+        } else {
+            $message = 'Składnik jest użyty w przepisach, nie można go usunąć.';
+            $type = 'alert-danger';
+        }
+
         Session::flash('message', $message);
+        Session::flash('alert-class', $type);
 
         return redirect()->action('IngredientAdminController@index');
     }

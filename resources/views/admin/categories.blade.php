@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 @if(Session::has('message'))
-                <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+                <div class="alert {{ Session::get('alert-class', 'alert-info') }}" role="alert">{{ Session::get('message') }}</div>
                 @endif
                 <div class="card-header">Kategorie</div>
 

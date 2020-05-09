@@ -98,10 +98,19 @@ class CategoryAdminController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
+        $category = Category::find($id);
+        $recipeInCategory = $category->recipes->count();
+        if ($recipeInCategory === 0) {
+            Category::destroy($id);
+            $message = 'Kategorię usunięto';
+            $type = 'alert-info';
+        } else {
+            $message = 'W kategorii są przepisy, nie można jej usunąć.';
+            $type = 'alert-danger';
+        }
 
-        $message = "Kategorię usunięto";
         Session::flash('message', $message);
+        Session::flash('alert-class', $type);
 
         return redirect()->action('CategoryAdminController@index');
     }

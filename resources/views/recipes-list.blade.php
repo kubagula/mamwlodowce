@@ -43,6 +43,10 @@
 			<p class="recipeUrl">Przepis zaczerpnięty ze strony: <a class="recipeUrl" href="{{ $recipe['url'] }}">{{ $recipe['url'] }}</a></p>
 		</div>
 		@endforeach
+		<div>
+			{{ $recipesAll->links() }}
+		</div>
 	</div>
+
 </div>
 @endsection

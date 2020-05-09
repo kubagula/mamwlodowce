@@ -23,7 +23,7 @@ Przepisy zawierające: {{ $ingredientName }}
 			@if ($key != $ingredientId)
 			<li>
 				<div class="ingredientsInRecipes">
-					<a class="ingredientsList" id="ingredientsList{{ $key }}" href="{{route('recipes.ingredients', $key)}}">{{ $ingredient }} </a>
+					<a class="ingredientsList" id="ingredientsList{{ $key }}" href="{{route('recipes.ingredients', $ingredient['slug'])}}">{{ $ingredient['name'] }} </a>
 
 					<!-- Rounded switch -->
 					<label class="switch">
@@ -38,7 +38,6 @@ Przepisy zawierające: {{ $ingredientName }}
 			@endforelse
 		</ul>
 	</div>
-
 
 	<div class="listRecipes" id="listRecipes">
 		@forelse($recipes as $title => $recipe)
@@ -61,6 +60,9 @@ Przepisy zawierające: {{ $ingredientName }}
 			Nie ma przepisów z tym składnikiem :(
 		</div>
 		@endforelse
+		<div>
+			{{ $recipesAll->links() }}
+		</div>
 	</div>
 </div>
 <div id="div1"></div>

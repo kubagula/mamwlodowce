@@ -19,7 +19,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipesAll = Recipe::all();
+        $recipesAll = Recipe::paginate(5);
         // $categoriesAll = Category::all();
         $categoriesAll = Category::has('recipes')->get();
         // dd($categoriesAll);
@@ -28,7 +28,7 @@ class RecipeController extends Controller
             $recipes[$recipe->title] = ['slug' => $recipe->slug, 'id' => $recipe->id, 'description' => $recipe->description, 'url' => $recipe->url, 'recipeIngredients' => $recipe->ingredients, 'recipeCategories' => $recipe->categories];
         }
         // dd($categoriesAll);        
-        return view('recipes-list', ['recipes' => $recipes, 'categories' => $categoriesAll]);
+        return view('recipes-list', ['recipes' => $recipes, 'categories' => $categoriesAll, 'recipesAll' => $recipesAll]);
     }
 
     /**
@@ -44,9 +44,11 @@ class RecipeController extends Controller
         if (count($ingredient->recipes) > 0) {
             $recipes = array();
 
-            foreach ($ingredient->recipes as $recipe) {
+            $recipeWithIngredient = $ingredient->recipes()->paginate(3);
+
+            foreach ($recipeWithIngredient as $recipe) {
                 foreach ($recipe->ingredients as $ingredientInRecipe) {
-                    $ingredients[$ingredientInRecipe->id] = $ingredientInRecipe->name;
+                    $ingredients[$ingredientInRecipe->id] = ['name' => $ingredientInRecipe->name, 'slug' => $ingredientInRecipe->slug];
                 }
 
                 $recipes[$recipe->title] = ['slug' => $recipe->slug, 'id' => $recipe->id, 'description' => $recipe->description, 'url' => $recipe->url, 'recipeIngredients' => $recipe->ingredients, 'recipeCategories' => $recipe->categories];
@@ -54,11 +56,11 @@ class RecipeController extends Controller
         } else {
             $recipes = [];
             foreach (Ingredient::all() as $ingredientInRecipe) {
-                $ingredients[$ingredientInRecipe->id] = $ingredientInRecipe->name;
+                $ingredients[$ingredientInRecipe->id] = ['name' => $ingredientInRecipe->name, 'slug' => $ingredientInRecipe->slug];
             }
         }
 
-        return view('recipes-with', ['recipes' => $recipes, 'ingredientName' => $ingredient->name, 'ingredientId' => $slug->id, 'ingredients' => $ingredients], compact('slug'));
+        return view('recipes-with', ['recipes' => $recipes, 'ingredientName' => $ingredient->name, 'ingredientId' => $slug->id, 'ingredients' => $ingredients, 'recipesAll' => $recipeWithIngredient], compact('slug'));
         // return redirect()->action('RecipeController@index');
 
     }
@@ -75,8 +77,9 @@ class RecipeController extends Controller
         // dd($category);
         $categoriesAll = Category::all();
         $recipes = array();
+        $recipeInCategory = $category->recipes()->paginate(5);
 
-        foreach ($category->recipes as $recipe) {
+        foreach ($recipeInCategory as $recipe) {
             foreach ($recipe->ingredients as $ingredient) {
                 $ingredients[$ingredient->id] = $ingredient->name;
             }
@@ -84,7 +87,7 @@ class RecipeController extends Controller
             $recipes[$recipe->title] = ['slug' => $recipe->slug, 'id' => $recipe->id, 'description' => $recipe->description, 'url' => $recipe->url, 'recipeIngredients' => $recipe->ingredients, 'recipeCategories' => $recipe->categories];
         }
 
-        return view('recipes-list', ['recipes' => $recipes, 'category' => $category->name, 'categories' => $categoriesAll], compact('slug'));
+        return view('recipes-list', ['recipes' => $recipes, 'category' => $category->name, 'categories' => $categoriesAll,  'recipesAll' => $recipeInCategory], compact('slug'));
     }
 
     /**

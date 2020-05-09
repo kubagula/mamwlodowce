@@ -68,6 +68,35 @@ li.nav-item {
     display: inline;
 }
 
+.pagination {
+    text-align: center;
+}
+
+.page-item {
+    display: inline-block;
+    outline: none;
+    line-height: 20px;
+    padding: 5px 10px;
+    font-size: .8em;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease 0s;
+}
+
+li.page-item {
+    color: #ff5e13;
+    border: 1px solid #ff5e13;
+    background: #fff;
+    cursor: pointer;
+}
+
+li.active {
+    color: #fff;
+    background: #ff5e13;
+    border: 1px solid transparent;
+}
+
 a.button {
     display: inline-block;
     border: 1px solid #eee;
@@ -275,7 +304,7 @@ a.button:hover {
 }
 
 .listRecipes {
-    max-width: : 74%;
+    max-width: 74%;
     flex-grow: 1;
     margin-left: 20px;
 }

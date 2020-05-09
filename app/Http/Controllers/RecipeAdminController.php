@@ -19,7 +19,7 @@ class RecipeAdminController extends Controller
      */
     public function index()
     {
-        $recipesAll = Recipe::all();        
+        $recipesAll = Recipe::all();
 
         return view('admin.recipes', ['recipes' => $recipesAll]);
     }
@@ -29,7 +29,7 @@ class RecipeAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(?array $oldData = null)
     {
         $ingredientsAll = Ingredient::all();
         $categoriesAll = Category::all();
@@ -45,33 +45,42 @@ class RecipeAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         $recipe = new Recipe;
 
         $recipe->title = $request->title;
+        $recipe->slug = $request->slug;
         $recipe->description = $request->description;
-        $recipe->url = "http://".$request->url;
+        $recipe->url = "http://" . $request->url;
 
-        $recipe->save(); 
-        $recipeId = $recipe->id;    
+        // if slug doesn't already exist then save new recipe
+        if (!$this->checkSlug($request->slug)) {
+            $recipe->save();
+            $recipeId = $recipe->id;
 
-        $ingredients = $request['ingredients'];
-        $values = $request['value'];   
+            $ingredients = $request['ingredients'];
+            // $values = $request['value'];
 
-        foreach($ingredients as $key => $ingredient) {
-            Recipe::find($recipeId)->ingredients()->attach($ingredient, ['value' => $request['value'][$key], 'unit_id' => $request['unit'][$key]]);
-        }       
+            foreach ($ingredients as $key => $ingredient) {
+                Recipe::find($recipeId)->ingredients()->attach($ingredient, ['value' => $request['value'][$key], 'unit_id' => $request['unit'][$key]]);
+            }
 
-        $categories = $request['categories'];        
+            $categories = $request['categories'];
 
-        foreach($categories as $key => $category) {
-            Recipe::find($recipeId)->categories()->attach($category);
+            foreach ($categories as $key => $category) {
+                Recipe::find($recipeId)->categories()->attach($category);
+            }
+
+            $message = "Dodano przepis";
+            Session::flash('message', $message);
+
+            return redirect()->action('RecipeAdminController@index');
+        } else {
+            //TODO dorobić powrót z danymi
+            $message = "Taki slug już istnieje";
+            Session::flash('message', $message);
+            return $this->create();
         }
-
-        $message = "Dodano przepis";
-        Session::flash('message', $message);
-
-        return redirect()->action('RecipeAdminController@index');
     }
 
     /**
@@ -84,7 +93,7 @@ class RecipeAdminController extends Controller
     {
         $recipe = Recipe::find($id);
 
-        return view('recipe', ['recipe' => $recipe]);        
+        return view('recipe', ['recipe' => $recipe]);
     }
 
     /**
@@ -121,12 +130,17 @@ class RecipeAdminController extends Controller
      */
     public function destroy($id)
     {
-        Recipe::destroy($id);       
-        
+        Recipe::destroy($id);
+
         $message = "Przepis usunięto";
         Session::flash('message', $message);
 
         return redirect()->action('RecipeAdminController@index');
     }
-    
+
+    private function checkSlug(string $slug): bool
+    {
+        $checkSlug = Recipe::where('slug', 'like', '%' . $slug . '%')->count();
+        return ($checkSlug === 0) ? false : true;
+    }
 }

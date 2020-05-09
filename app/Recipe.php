@@ -11,7 +11,7 @@ class Recipe extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'url'];
+    protected $fillable = ['title', 'slug', 'description', 'url'];
 
     /**
      * The ingredients that belong to the receipe.
@@ -21,11 +21,16 @@ class Recipe extends Model
         return $this->belongsToMany('App\Ingredient')->withPivot('unit_id', 'value');
     }
 
-     /**
+    /**
      * The categories that belong to the recipe.
      */
     public function categories()
     {
         return $this->belongsToMany('App\Category');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

@@ -15,7 +15,7 @@ class CategoryAdminController extends Controller
      */
     public function index()
     {
-        $categoriesAll = Category::all();        
+        $categoriesAll = Category::all();
 
         return view('admin.categories', ['categories' => $categoriesAll]);
     }
@@ -37,18 +37,20 @@ class CategoryAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {                
-        if($request->hasFile('photo')){                        
-                $file = $request->photo;                
-                $destination = 'images/categories/';
-                // $ext = $file->getClientOriginalExtension();
-                $name = $file->getClientOriginalName();                                
-                $file->move($destination, $name);                            
+    {
+        if ($request->hasFile('photo')) {
+            $file = $request->photo;
+            $destination = 'images/categories/';
+            // $ext = $file->getClientOriginalExtension();
+            $name = $file->getClientOriginalName();
+            $file->move($destination, $name);
+        } else {
+            $name = '';
         }
 
-        $category = Category::firstOrCreate(['name' => $request['name'], 'photo' => $name]); 
+        $category = Category::firstOrCreate(['name' => $request['name'], 'slug' => $request['slug'], 'photo' => $name]);
 
-        $message = 'Dodano Kategorię';               
+        $message = 'Dodano Kategorię';
         Session::flash('message', $message);
 
         return redirect()->action('CategoryAdminController@index');
@@ -96,8 +98,8 @@ class CategoryAdminController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);       
-        
+        Category::destroy($id);
+
         $message = "Kategorię usunięto";
         Session::flash('message', $message);
 

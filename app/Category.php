@@ -13,7 +13,7 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'photo'];
+    protected $fillable = ['name', 'slug', 'photo'];
 
     /**
      * The recipes that belong to the category.
@@ -21,5 +21,12 @@ class Category extends Model
     public function recipes()
     {
         return $this->belongsToMany('App\Recipe');
+    }
+    /*
+    * For slug in URL - instead id will be slug in url
+    */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

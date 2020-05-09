@@ -11,7 +11,7 @@ class Ingredient extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'type_id', 'onhome'];
+    protected $fillable = ['name', 'slug', 'type_id', 'onhome'];
 
     /**
      * The receipes that belong to the ingredient.
@@ -35,5 +35,10 @@ class Ingredient extends Model
     public function type()
     {
         return $this->belongsTo('App\Type');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

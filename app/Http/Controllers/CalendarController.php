@@ -13,17 +13,17 @@ class CalendarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Ingredient $slug)
     {
         $monthsIngredients = array();
 
         $months = Month::all();
-        foreach($months as $month) {
+        foreach ($months as $month) {
             foreach ($month->ingredients as $ingredient) {
-                $monthsIngredients[$month->name][] = ['id' => $ingredient->id, 'name' => $ingredient->name];    
-            }            
+                $monthsIngredients[$month->name][] = ['id' => $ingredient->id, 'slug' => $ingredient->slug, 'name' => $ingredient->name];
+            }
         }
         // dd($monthsIngredients);        
-        return view('calendar', ['monthsIngredients' => $monthsIngredients]);
-    }    
+        return view('calendar', ['monthsIngredients' => $monthsIngredients], compact('slug'));
+    }
 }

@@ -24,10 +24,10 @@ Route::get('/przepisy', 'RecipeController@index')->name('recipes');
 
 Route::get('/ajax', 'RecipeController@ajax')->name('ajax');
 
-Route::get('/przepisy-ze-skladnikiem/{id}', 'RecipeController@recipesWithIngredient')->name('recipes.ingredients');
-Route::get('/przepisy-w-kategorii/{id}', 'RecipeController@recipeInCategories')->name('recipes.categories');
+Route::get('/przepisy-ze-skladnikiem/{slug}', 'RecipeController@recipesWithIngredient')->name('recipes.ingredients');
+Route::get('/przepisy-w-kategorii/{slug}', 'RecipeController@recipeInCategories')->name('recipes.categories');
 Route::get('/wybrane-przepisy', 'RecipeController@selectedRecipes')->name('recipes.selectedRecipes');
-Route::get('/przepis/{id}', 'RecipeController@recipe')->name('recipes.recipe');
+Route::get('/przepis/{slug}', 'RecipeController@recipe')->name('recipes.recipe');
 
 // Route::get('/admin', 'AdminController@index')->middleware('auth');
 
@@ -43,9 +43,9 @@ Route::get('/przepis/{id}', 'RecipeController@recipe')->name('recipes.recipe');
 // Route::post('image-upload', 'CategoryAdminController@store')->name('image.upload.category');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', 'AdminController@index');
+	Route::get('/admin', 'AdminController@index');
 
-    Route::resource('admin/ingredients', 'IngredientAdminController');
+	Route::resource('admin/ingredients', 'IngredientAdminController');
 	Route::resource('admin/recipes', 'RecipeAdminController');
 	Route::resource('admin/categories', 'CategoryAdminController');
 	Route::resource('admin/types', 'TypeAdminController');

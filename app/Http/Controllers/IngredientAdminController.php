@@ -10,7 +10,7 @@ use Session;
 
 class IngredientAdminController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,7 +18,7 @@ class IngredientAdminController extends Controller
     public function index()
     {
         $ingredientsAll = Ingredient::all();
-        $monthsAll = Month::all();        
+        $monthsAll = Month::all();
         $typesAll = Type::all();
 
         return view('admin.ingredients', ['ingredients' => $ingredientsAll, 'months' => $monthsAll, 'types' => $typesAll]);
@@ -31,7 +31,6 @@ class IngredientAdminController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -41,21 +40,21 @@ class IngredientAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {    
+    {
         $onhome = (int) ($request['onhome'] ?? 0);
 
-        $ingredient = Ingredient::firstOrCreate(['name' => $request['name'], 'type_id' => $request['type_id'], 'onhome' => $onhome]); 
+        $ingredient = Ingredient::firstOrCreate(['name' => $request['name'], 'slug' => $request['slug'], 'type_id' => $request['type_id'], 'onhome' => $onhome]);
         $ingredientId = $ingredient->id;
 
-        $months = $request['months'];        
+        $months = $request['months'];
 
-        if(!empty($months)) {
-            foreach($months as $key => $month) {
+        if (!empty($months)) {
+            foreach ($months as $key => $month) {
                 Ingredient::find($ingredientId)->months()->attach($month);
             }
         }
-        
-        $message = 'Dodano składnik';     	    	
+
+        $message = 'Dodano składnik';
         Session::flash('message', $message);
 
         return redirect()->action('IngredientAdminController@index');
@@ -104,8 +103,8 @@ class IngredientAdminController extends Controller
      */
     public function destroy($id)
     {
-        Ingredient::destroy($id);       
-        
+        Ingredient::destroy($id);
+
         $message = "Składnik usunięto";
         Session::flash('message', $message);
 

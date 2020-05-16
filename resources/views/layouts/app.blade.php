@@ -50,16 +50,6 @@
                     </ul>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
                 <!-- <nav>
                             Navigation burger
                             <div id="burger" class="burger">
@@ -95,9 +85,18 @@
                 @yield('content')
             </div>
         </section>
+        <section id="cookie-warn">
+            <p><strong>UWAGA!</strong> Niniejsza strona wykorzystuje pliki cookies.
+                Informacje uzyskane za pomocą cookies wykorzystywane są głównie
+                w celach statystycznych. Pozostając na stronie godzisz się na
+                ich zapisywanie w Twojej przeglądarce. &nbsp;
+                <a href="https://policies.google.com/technologies/cookies?hl=pl" target="_blank">Więcej informacji</a>
+                <a href="javascript:void(0);" id="close-cookie-warn">OK</a></p>
+        </section>
     </div>
+
     <footer class="footer">
-        Strona stworzona przeze mnie
+        Copyright © 2020 mamwlodówce.
     </footer>
 </body>
 

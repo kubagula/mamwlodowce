@@ -28,17 +28,4 @@
     @endforeach
 </div>
 
-{{-- <!--<div class="last">
-    	Ostatnio dodane przepisy
-    	<div class="ingredients">    			
-			    @foreach ($lastAddedRecipes as $recipe)
-            		<div><a href="">{{ $recipe['title'] }}</a>
-@foreach ($recipe['categories'] as $categoryId => $category)
-<p><a href="{{route('recipes.categories', $categoryId)}}">{{ $category }}</a>
-    <p>
-        @endforeach
-        </div>
-        @endforeach
-        </div>
-        </div> --> --}}
-        @endsection
+@endsection

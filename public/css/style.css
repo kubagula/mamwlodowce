@@ -119,6 +119,9 @@ a.button:hover {
     min-height: 100vh;
 }
 
+.loginForm {
+    justify-content: start;
+}
 
 .logo {
     display: block;

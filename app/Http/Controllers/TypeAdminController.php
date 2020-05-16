@@ -15,7 +15,7 @@ class TypeAdminController extends Controller
      */
     public function index()
     {
-        $typesAll = Type::all();        
+        $typesAll = Type::all();
 
         return view('admin.types', ['types' => $typesAll]);
     }
@@ -38,9 +38,9 @@ class TypeAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $type = Type::firstOrCreate(['name' => $request['name']]); 
+        $type = Type::firstOrCreate(['name' => $request['name']]);
 
-        $message = 'Dodano typ składnika';               
+        $message = 'Dodano typ składnika';
         Session::flash('message', $message);
 
         return redirect()->action('TypeAdminController@index');
@@ -88,9 +88,9 @@ class TypeAdminController extends Controller
      */
     public function destroy($id)
     {
-        Type::destroy($id);       
-        
-        $message = "Typ składnika usunięto";
+        Type::destroy($id);
+
+        $message = 'Typ składnika usunięto';
         Session::flash('message', $message);
 
         return redirect()->action('TypeAdminController@index');

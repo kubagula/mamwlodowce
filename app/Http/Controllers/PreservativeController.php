@@ -15,8 +15,8 @@ class PreservativeController extends Controller
     public function index()
     {
         $preservatives = Preservative::all();
-        
+
         // dd($preservatives);        
         return view('preservatives', ['preservatives' => $preservatives]);
-    }    
+    }
 }

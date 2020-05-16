@@ -15,7 +15,7 @@ class UnitAdminController extends Controller
      */
     public function index()
     {
-        $unitsAll = Unit::all();        
+        $unitsAll = Unit::all();
 
         return view('admin.units', ['units' => $unitsAll]);
     }
@@ -38,9 +38,9 @@ class UnitAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $unit = Unit::firstOrCreate(['name' => $request['name']]); 
+        $unit = Unit::firstOrCreate(['name' => $request['name']]);
 
-        $message = 'Dodano jednostkę miary';               
+        $message = 'Dodano jednostkę miary';
         Session::flash('message', $message);
 
         return redirect()->action('UnitAdminController@index');
@@ -88,9 +88,9 @@ class UnitAdminController extends Controller
      */
     public function destroy($id)
     {
-        Unit::destroy($id);       
-        
-        $message = "Jednostkę miary usunięto";
+        Unit::destroy($id);
+
+        $message = 'Jednostkę miary usunięto';
         Session::flash('message', $message);
 
         return redirect()->action('UnitAdminController@index');

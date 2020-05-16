@@ -68,7 +68,6 @@ class IngredientAdminController extends Controller
      */
     public function show($id)
     {
-        echo 'jestem 4';
     }
 
     /**
@@ -79,7 +78,6 @@ class IngredientAdminController extends Controller
      */
     public function edit($id)
     {
-        echo 'jestem3';
     }
 
     /**
@@ -91,8 +89,7 @@ class IngredientAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        echo 'jestem2';
+        //        
     }
 
     /**

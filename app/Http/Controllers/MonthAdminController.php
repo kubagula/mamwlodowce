@@ -15,9 +15,9 @@ class MonthAdminController extends Controller
      */
     public function index()
     {
-       $monthsAll = Month::all();    
-           
-       return view('admin.months', ['months' => $monthsAll]);
+        $monthsAll = Month::all();
+
+        return view('admin.months', ['months' => $monthsAll]);
     }
 
     /**
@@ -38,9 +38,9 @@ class MonthAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $month = Month::firstOrCreate(['name' => $request['name']]); 
+        $month = Month::firstOrCreate(['name' => $request['name']]);
 
-        $message = 'Dodano miesiąc';               
+        $message = 'Dodano miesiąc';
         Session::flash('message', $message);
 
         return redirect()->action('MonthAdminController@index');
@@ -88,9 +88,9 @@ class MonthAdminController extends Controller
      */
     public function destroy($id)
     {
-        Month::destroy($id);       
-        
-        $message = "Miesiąc usunięto";
+        Month::destroy($id);
+
+        $message = 'Miesiąc usunięto';
         Session::flash('message', $message);
 
         return redirect()->action('MonthAdminController@index');

@@ -159,9 +159,4 @@ class RecipeController extends Controller
 
         return view('recipe', ['recipe' => $recipe, 'recipeIngredients' => $recipeIngredients, 'recipeCategories' => $recipeCategories], compact('slug'));
     }
-
-    // public function getRouteKeyName()
-    // {
-    //     return 'title';
-    // }
 }

@@ -51,7 +51,7 @@ class RecipeAdminController extends Controller
         $recipe->title = $request->title;
         $recipe->slug = $request->slug;
         $recipe->description = $request->description;
-        $recipe->url = "http://" . $request->url;
+        $recipe->url = 'http://' . $request->url;
 
         // if slug doesn't already exist then save new recipe
         if (!$this->checkSlug($request->slug)) {
@@ -71,13 +71,13 @@ class RecipeAdminController extends Controller
                 Recipe::find($recipeId)->categories()->attach($category);
             }
 
-            $message = "Dodano przepis";
+            $message = 'Dodano przepis';
             Session::flash('message', $message);
 
             return redirect()->action('RecipeAdminController@index');
         } else {
-            //TODO dorobić powrót z danymi
-            $message = "Taki slug już istnieje";
+            //TODO dorobić powrót z danymi lub sprawdzanie po ajaxie
+            $message = 'Taki slug już istnieje';
             Session::flash('message', $message);
             return $this->create();
         }
@@ -118,8 +118,6 @@ class RecipeAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo 'aaaa';
-        dd($request);
     }
 
     /**
@@ -132,7 +130,7 @@ class RecipeAdminController extends Controller
     {
         Recipe::destroy($id);
 
-        $message = "Przepis usunięto";
+        $message = 'Przepis usunięto';
         Session::flash('message', $message);
 
         return redirect()->action('RecipeAdminController@index');

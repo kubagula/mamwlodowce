@@ -29,18 +29,7 @@ Route::get('/przepisy-w-kategorii/{slug}', 'RecipeController@recipeInCategories'
 Route::get('/wybrane-przepisy', 'RecipeController@selectedRecipes')->name('recipes.selectedRecipes');
 Route::get('/przepis/{slug}', 'RecipeController@recipe')->name('recipes.recipe');
 
-// Route::get('/admin', 'AdminController@index')->middleware('auth');
-
-// Route::get('/admin/ingredients', 'IngredientAdminController@index')->middleware('admin');
-// Route::post('/admin/ingredients', 'IngredientAdminController@store')->middleware('admin');
-
-// Route::resource('admin/ingredients', 'IngredientAdminController');
-// Route::resource('admin/recipes', 'RecipeAdminController');
-// Route::resource('admin/categories', 'CategoryAdminController');
-// Route::resource('admin/types', 'TypeAdminController');
-// Route::resource('admin/units', 'UnitAdminController');
-// Route::resource('admin/months', 'MonthAdminController');
-// Route::post('image-upload', 'CategoryAdminController@store')->name('image.upload.category');
+Route::get('/polityka-prywatnosci', 'HomeController@policy');
 
 Route::middleware(['auth'])->group(function () {
 	Route::get('/admin', 'AdminController@index');

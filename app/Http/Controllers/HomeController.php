@@ -47,15 +47,15 @@ class HomeController extends Controller
         //     foreach($categoriesLastRecipes as $category) {                             
         //         $lastAddedRecipes[$value->id]['categories'][$category->id] = $category->name;                
         //     }
-            
+
         // }        
         // dd($lastAddedRecipes);
 
         return view('home', ['ingredients' => $ingredients, 'categories' => $categories, /*'lastAddedRecipes' => $lastAddedRecipes*/]);
-    }    
+    }
 
-    // public function admin()
-    // {
-    //     return view('admin.dashboard');
-    // }
+    public function policy()
+    {
+        return view('privacy-policy');
+    }
 }

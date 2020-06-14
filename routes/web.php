@@ -31,6 +31,9 @@ Route::get('/przepis/{slug}', 'RecipeController@recipe')->name('recipes.recipe')
 
 Route::get('/polityka-prywatnosci', 'HomeController@policy');
 
+Route::get('/kontakt', 'ContactController@index');
+Route::post('/contact-us', 'ContactController@handleForm');
+
 Route::middleware(['auth'])->group(function () {
 	Route::get('/admin', 'AdminController@index');
 

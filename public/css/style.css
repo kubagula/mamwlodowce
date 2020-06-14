@@ -98,7 +98,7 @@ li.active {
     border: 1px solid transparent;
 }
 
-a.button {
+.button {
     display: inline-block;
     border: 1px solid #eee;
     background: var(--background-color);
@@ -109,7 +109,7 @@ a.button {
     font-size: 13px;
 }
 
-a.button:hover {
+.button:hover {
     background-color: var(--button-background-color);
 }
 
@@ -587,23 +587,38 @@ ol.ordered-list li span {
     color: #828bb2;
 }
 
-/* ul.unorderedList {
+/* end policy privacy */
+/* contact */
+.single-input {
     display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    width: 50%;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    background: var(--button-background-color);
+    padding: 0 20px;
+    overflow: visible;
 }
 
-ul.unorderedList li {
-    display: list-item;
-    list-style: inherit;
-    list-style-type: decimal-leading-zero;
-    color: #ff5e13;
-    font-weight: 500;
-    line-height: 1.82em !important;
-} */
+.single-textarea {
+    display: block;
+    width: 50%;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    background: var(--button-background-color);
+    padding: 0 20px;
+    height: 100px;
+    resize: none;
+}
 
-/* end policy privacy */
+.error {
+    padding-bottom: 10px;
+    ;
+}
+
+.error li {
+    color: red;
+}
+
+/* end contact */

@@ -96,7 +96,8 @@
     </div>
 
     <footer class="footer">
-        Copyright © 2020 mamwlodówce.
+        <p class="copy">Copyright © 2020 mamwlodówce | <a href="{{ route('kontakt') }}" class="contactLink">Kontakt</a>
+        </p>
     </footer>
 </body>
 

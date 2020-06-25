@@ -18,6 +18,8 @@
                             @csrf
                             <div class="form-group">
 
+                                <button type="button" value="Dodaj" onclick="javascript:add();"> Dodaj składnik</button>
+
                                 <div id="innerIngredient">
                                     <label for="ingredient">Składnik</label>
                                     <select class="form-control" id="ingredient" name="ingredients[]">
@@ -37,7 +39,7 @@
                                     </select>
                                 </div>
 
-                                <button type="button" value="Dodaj" onclick="javascript:add();"> Dodaj składnik</button>
+
 
                                 <div id="formIngredient"></div>
 

@@ -45,7 +45,7 @@
          <textarea name="message_body" class="single-textarea">{{ old('message_body') }}</textarea>
       </div>
 
-      <button type="submit" class="button">Wyślij</button>
+      <button type="submit" class="button contact-button">Wyślij</button>
    </form>
 </div>
 @endsection

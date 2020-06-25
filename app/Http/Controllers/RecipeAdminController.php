@@ -31,7 +31,7 @@ class RecipeAdminController extends Controller
      */
     public function create(?array $oldData = null)
     {
-        $ingredientsAll = Ingredient::all();
+        $ingredientsAll = Ingredient::orderBy('name')->get();
         $categoriesAll = Category::all();
         $unitsAll = Unit::all();
 

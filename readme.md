@@ -1,8 +1,8 @@
 ![Logo](./public/images/logo-ze-sloniem.png)
 
-# MamWLodowce - recipe search engine
+# MamWLodówce - recipe search engine
 
-The site MamWLodowce allows you to find recipes containing ingredients that you currently have at home.
+The site MamWLodówce allows you to find recipes containing ingredients that you currently have at home.
 The project was aimed at getting to know the Laravel framework. 
 
 Deployed app:

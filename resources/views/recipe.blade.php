@@ -35,7 +35,7 @@
 	</div>
 
 	<div class="recipe">
-		<div class="">
+		<div>
 			<p>{!! nl2br($recipe->description) !!}</p>
 		</div>
 		<div class="recipeUrl">

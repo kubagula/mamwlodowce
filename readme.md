@@ -5,7 +5,7 @@
 The site MamWLodówce allows you to find recipes containing ingredients that you currently have at home.
 The project was aimed at getting to know the Laravel framework. 
 
-Deployed app:
+[Deployed app: ](http://mamwlodowce.pamit.pl/ "Link do mamwlodowce.pamit.pl")
 
 ## Technologies
 

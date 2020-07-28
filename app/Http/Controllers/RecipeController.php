@@ -12,6 +12,8 @@ use App\Unit;
 
 class RecipeController extends Controller
 {
+    const RECIPES_ON_PAGE = 25;
+
     /**
      * Display a listing of the resource.
      *
@@ -19,15 +21,13 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipesAll = Recipe::paginate(5);
-        // $categoriesAll = Category::all();
+        $recipesAll = Recipe::paginate(self::RECIPES_ON_PAGE);
         $categoriesAll = Category::has('recipes')->get();
-        // dd($categoriesAll);
 
         foreach ($recipesAll as $recipe) {
             $recipes[$recipe->title] = ['slug' => $recipe->slug, 'id' => $recipe->id, 'description' => $recipe->description, 'url' => $recipe->url, 'recipeIngredients' => $recipe->ingredients, 'recipeCategories' => $recipe->categories];
         }
-        // dd($categoriesAll);        
+
         return view('recipes-list', ['recipes' => $recipes, 'categories' => $categoriesAll, 'recipesAll' => $recipesAll]);
     }
 
@@ -40,11 +40,12 @@ class RecipeController extends Controller
     public function recipesWithIngredient(Ingredient $slug)
     {
         $ingredient = Ingredient::find($slug->id);
+        $recipeWithIngredient = null;
 
         if (count($ingredient->recipes) > 0) {
             $recipes = array();
 
-            $recipeWithIngredient = $ingredient->recipes()->paginate(3);
+            $recipeWithIngredient = $ingredient->recipes()->paginate(self::RECIPES_ON_PAGE);
 
             foreach ($recipeWithIngredient as $recipe) {
                 foreach ($recipe->ingredients as $ingredientInRecipe) {
@@ -61,8 +62,6 @@ class RecipeController extends Controller
         }
 
         return view('recipes-with', ['recipes' => $recipes, 'ingredientName' => $ingredient->name, 'ingredientId' => $slug->id, 'ingredients' => $ingredients, 'recipesAll' => $recipeWithIngredient], compact('slug'));
-        // return redirect()->action('RecipeController@index');
-
     }
 
     /**
@@ -74,10 +73,9 @@ class RecipeController extends Controller
     public function recipeInCategories(Category $slug)
     {
         $category = Category::find($slug->id);
-        // dd($category);
         $categoriesAll = Category::all();
         $recipes = array();
-        $recipeInCategory = $category->recipes()->paginate(5);
+        $recipeInCategory = $category->recipes()->paginate(self::RECIPES_ON_PAGE);
 
         foreach ($recipeInCategory as $recipe) {
             foreach ($recipe->ingredients as $ingredient) {
@@ -99,13 +97,9 @@ class RecipeController extends Controller
     public function selectedRecipes(Request $request)
     {
         $ingredientStart = json_decode($request->ingredientStart, true);
-        $ingredientStartId = intval($ingredientStart['id']);
+        // $ingredientStartId = intval($ingredientStart['id']);
 
         $ingredientsShortage = json_decode($request->ingredientsShortage, true);
-
-        // if(empty($ingredientsShortage)) {
-        //    return redirect()->action('RecipeController@recipesWithIngredient', ['id' => $ingredientStartId]);
-        // }
 
         $whereCondition = array();
 
@@ -133,7 +127,6 @@ class RecipeController extends Controller
             );
         }
 
-        // dd($results);
         $recipes = [];
         foreach ($results as $result) {
             $recipe = Recipe::find($result->id);
@@ -145,7 +138,6 @@ class RecipeController extends Controller
 
     public function recipe(Recipe $slug)
     {
-        // dd($title->id);
         $recipe = Recipe::find($slug->id);
 
         $recipeCategories = $recipe->categories;
@@ -154,8 +146,6 @@ class RecipeController extends Controller
             $unit = Unit::find($ingredient->pivot->unit_id);
             $recipeIngredients[$ingredient['name']] = ['slug' => $ingredient['slug'], 'id' => $ingredient['id'], 'value' => $ingredient->pivot->value, 'unit' => $unit->name];
         }
-
-        // dd($recipeIngredients);
 
         return view('recipe', ['recipe' => $recipe, 'recipeIngredients' => $recipeIngredients, 'recipeCategories' => $recipeCategories], compact('slug'));
     }

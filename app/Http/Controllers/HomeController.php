@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Recipe;
 use App\Ingredient;
 use App\Category;
+use App\Loco;
 
 class HomeController extends Controller
 {
@@ -57,5 +58,20 @@ class HomeController extends Controller
     public function policy()
     {
         return view('privacy-policy');
+    }
+
+    public function loco()
+    {
+        return view('loco');
+    }
+
+    public function szukajDudu(Request $request)
+    {
+        $locos = Loco::where('numer', trim($request['number']))
+            ->orderBy('seria', 'asc')
+            ->get();
+        // dd($locos);
+
+        return view('loco', ['locos' => $locos]);
     }
 }

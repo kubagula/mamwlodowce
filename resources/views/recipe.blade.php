@@ -39,7 +39,7 @@
 			<p>{!! nl2br($recipe->description) !!}</p>
 		</div>
 		<div class="recipeUrl">
-			... ciąg dalszy przepisu na stronie: <a class="recipeUrl" href="{{ $recipe->url }}">{{ $recipe->url }}</a>
+			... ciąg dalszy przepisu na stronie: <a class="recipeUrl" href="{{ $recipe->url }}" target="_blank">{{ $recipe->url }}</a>
 		</div>
 	</div>
 </div>

@@ -53,16 +53,18 @@ Przepisy zawierające: {{ $ingredientName }}
 			<a class="button ingredientsList" href="{{route('recipes.ingredients', $ingredient['slug'])}}">{{ $ingredient['name'] }} </a>
 			@endforeach
 			<br>
-			<p class="recipeUrl">Przepis zaczerpnięty ze strony: <a class="recipeUrl" href="{{ $recipe['url'] }}">{{ $recipe['url'] }}</a></p>
+			<p class="recipeUrl">Przepis zaczerpnięty ze strony: <a class="recipeUrl" href="{{ $recipe['url'] }}" target="_blank">{{ $recipe['url'] }}</a></p>
 		</div>
 		@empty
 		<div class="recipe">
 			Nie ma przepisów z tym składnikiem :(
 		</div>
 		@endforelse
+		@if (!empty($recipesAll))
 		<div>
-			{{ $recipesAll->links() }}
+			{{ $recipesAll->links('vendor.pagination.default') }}
 		</div>
+		@endif
 	</div>
 </div>
 <div id="div1"></div>

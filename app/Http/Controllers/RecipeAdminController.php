@@ -51,7 +51,7 @@ class RecipeAdminController extends Controller
         $recipe->title = $request->title;
         $recipe->slug = $request->slug;
         $recipe->description = $request->description;
-        $recipe->url = 'http://' . $request->url;
+        $recipe->url = $request->url;
 
         // if slug doesn't already exist then save new recipe
         if (!$this->checkSlug($request->slug)) {

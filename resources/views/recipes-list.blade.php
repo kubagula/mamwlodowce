@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="listRecipes">
-		@foreach($recipes as $title => $recipe)
+		@forelse($recipes as $title => $recipe)
 		<div class="recipe">
 			<a href="{{route('recipes.recipe', $recipe['slug'])}}">{{ $title }} </a>
 			<span class="recipeCategories">
@@ -40,12 +40,19 @@
 			<a class="button ingredientsList" href="{{route('recipes.ingredients', $ingredient['slug'])}}">{{ $ingredient['name'] }} </a>
 			@endforeach
 			<br>
-			<p class="recipeUrl">Przepis zaczerpnięty ze strony: <a class="recipeUrl" href="{{ $recipe['url'] }}">{{ $recipe['url'] }}</a></p>
+			<p class="recipeUrl">Przepis zaczerpnięty ze strony: <a class="recipeUrl" href="{{ $recipe['url'] }}" target="_blank">{{ $recipe['url'] }}</a></p>
 		</div>
-		@endforeach
+		@empty
+		<div class="recipe">
+			Nie ma przepisów w tej kategorii :(
+		</div>
+		@endforelse
+		@if (!empty($recipesAll))
 		<div>
-			{{ $recipesAll->links() }}
+			{{ $recipesAll->links('vendor.pagination.default') }}
 		</div>
+		@endif
+
 	</div>
 
 </div>

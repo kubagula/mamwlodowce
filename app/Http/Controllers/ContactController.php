@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Mail;
 
 class ContactController extends Controller
@@ -34,8 +33,8 @@ class ContactController extends Controller
         $data = ['name' => $request->get('name'), 'email' => $request->get('email'), 'messageBody' => $request->get('message_body')];
 
         Mail::send('emails.email', $data, function ($message) use ($data) {
-            $message->from($data['email'], $data['name']);
-            $message->to('almalicka@gmail.com', 'Admin')
+            $message->from('agnieszka@pamit.pl', 'Agnieszka Malicka');
+            $message->to('almalicka@gmail.com', 'Agnieszka Malicka')
                 ->subject('Wiadomość z mamwlodowce');
         });
 

@@ -20,7 +20,7 @@ function add() {
     formIngredient.appendChild(cloneIngredient);
 
     //create remove button
-    var remove = document.createElement('button');
+    let remove = document.createElement('button');
     remove.setAttribute('id', 'inner' + in_id);
     remove.onclick = function (e) {
         removeElement(e)

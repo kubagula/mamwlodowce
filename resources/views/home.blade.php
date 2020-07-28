@@ -24,7 +24,7 @@
 
 <div class="categories">
     @foreach ($categories as $category)
-    <div><img src="{{ asset('images/categories/'.$category['photo'].'') }}" alt="zdjęcie kategorii {{ $category['name'] }}"><a href="{{route('recipes.categories', $category['slug'])}}">{{ $category['name'] }}</a></div>
+    <div><a href="{{route('recipes.categories', $category['slug'])}}"><img src="{{ asset('images/categories/'.$category['photo'].'') }}" alt="zdjęcie kategorii {{ $category['name'] }}"></a><a href="{{route('recipes.categories', $category['slug'])}}">{{ $category['name'] }}</a></div>
     @endforeach
 </div>
 

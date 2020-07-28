@@ -22,9 +22,9 @@
 </div>
 @endif
 @if(session()->has('message'))
-<div class="alert alert-success">
+<h1>
    {{ session()->get('message') }}
-</div>
+</h1>
 @endif
 
 <div class="contact-form">
